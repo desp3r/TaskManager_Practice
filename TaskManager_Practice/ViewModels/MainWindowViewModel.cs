@@ -7,8 +7,19 @@ using TaskManager_Practice.ViewModels.Base;
 
 namespace TaskManager_Practice.ViewModels
 {
-    class MainWindowViewModel : ViewModel
+    internal class MainWindowViewModel : ViewModel
     {
+        // Заголовок окна
+        #region Title
 
+        private string _Title;
+
+        public string Title
+        {
+            get => _Title;
+            set => Set(ref _Title, value);
+        }
+
+        #endregion 
     }
 }
