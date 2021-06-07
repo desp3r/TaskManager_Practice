@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using TaskManager_Practice.Infrastructure.Commands;
 using TaskManager_Practice.ViewModels.Base;
 
 namespace TaskManager_Practice.ViewModels
@@ -21,5 +23,21 @@ namespace TaskManager_Practice.ViewModels
         }
 
         #endregion 
+
+
+        public ICommand SomeCommandTemplate { get; }
+
+        private bool CanSomeCommandTemlateExecute(object ob) => true;
+
+        private void OnSomeCommandTemplate(object ob)
+        {
+            //Здесь описание работы команды, пример:
+            //Application.Current.Shutdown();
+        }
+
+        public MainWindowViewModel()
+        {
+            SomeCommandTemplate = new ActionCommand(OnSomeCommandTemplate, CanSomeCommandTemlateExecute);
+        }
     }
 }

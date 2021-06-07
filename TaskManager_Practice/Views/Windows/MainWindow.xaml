@@ -13,6 +13,6 @@
     </Window.DataContext>
     <Grid>
         <Button x:Name="button1" Margin="5" Content="First button" Height="30" Width="300" HorizontalAlignment="Left"
-                VerticalAlignment="Top"/>
+                VerticalAlignment="Top" Command="{Binding SomeCommandTemplate}"/> <!--пример привязки команды к кнопке-->
     </Grid>
 </Window>
