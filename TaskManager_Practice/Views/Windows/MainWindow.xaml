@@ -1,18 +1,72 @@
 ﻿<Window x:Class="TaskManager_Practice.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" mc:Ignorable="d"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TaskManager_Practice"
         xmlns:vm="clr-namespace:TaskManager_Practice.ViewModels"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        mc:Ignorable="d"
         Title="{Binding Title}" Height="450" Width="800">   
     <Window.DataContext>
         <vm:MainWindowViewModel/>
     </Window.DataContext>
     <Grid>
-        <Button x:Name="button1" Margin="5" Content="First button" Height="30" Width="300" HorizontalAlignment="Left"
-                VerticalAlignment="Top" Command="{Binding SomeCommandTemplate}"/> <!--пример привязки команды к кнопке-->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <GridSplitter Grid.Column="1" ShowsPreview="False" Width="3"
+        HorizontalAlignment="Center" VerticalAlignment="Stretch" />
+
+        <TabControl>
+            <TabItem Header="Проекты">
+                <ListBox ItemsSource="{Binding Projects}"
+            </TabItem>
+            <TabItem Header="Работники">
+                
+            </TabItem>
+            
+        </TabControl>
+
+
+        <!--<TabControl x:Name="products">
+            <TabItem x:Name="smartphonesTab">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Ellipse Height="10" Width="10" Fill="Black" />
+                        <TextBlock Margin="3">Смартфоны</TextBlock>
+                    </StackPanel>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <StackPanel>
+                        
+                    </StackPanel>
+                </TabItem.Content>
+            </TabItem>
+            <TabItem x:Name="tabletsTab">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle Height="10" Width="10" Fill="Black" />
+                        <TextBlock Margin="3">Планшеты</TextBlock>
+                    </StackPanel>
+                </TabItem.Header>
+            </TabItem>
+        </TabControl>-->
+
+
+        <!--<StackPanel Grid.Column="0">
+        <Button Content="Открыть обычное дочернее окно" Command="{Binding OpenChildWindow}"/>
+    </StackPanel>-->
     </Grid>
+
+    <Window.InputBindings>
+        <KeyBinding Command="{Binding ExitCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" Gesture="Ctrl+X"/>
+        <KeyBinding Command="{Binding OpenChildWindow}" Gesture="Ctrl+Y"/>
+        <KeyBinding Command="{Binding OpenDialogWindow}" Gesture="Ctrl+Z"/>
+    </Window.InputBindings>
 </Window>
