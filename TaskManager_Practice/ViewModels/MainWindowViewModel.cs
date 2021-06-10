@@ -46,8 +46,8 @@ namespace TaskManager_Practice.ViewModels
         
         #region Commands
 
-        public ICommand OpenFirstPage { get; }
-        public ICommand OpenSecondPage { get; }
+        public ICommand OpenProjectsCommand { get; }
+        public ICommand OpenWorkersCommand { get; }
         public ICommand OpenNewWindow { get; }
         
         #endregion
@@ -58,8 +58,8 @@ namespace TaskManager_Practice.ViewModels
         public MainWindowViewModel()
         {
             OpenNewWindow = new ActionCommand(OnOpenChildWindow, CanOpenChildWindow);
-            OpenFirstPage = new ActionCommand(OpenFirstPage_Execute, OpenFirstPage_CanExecute);
-            OpenSecondPage = new ActionCommand(OpenSecondPage_Execute, OpenSecondPage_CanExecute);
+            OpenProjectsCommand = new ActionCommand(OpenProjectsCommand_Execute, OpenProjectsCommand_CanExecute);
+            OpenWorkersCommand = new ActionCommand(OpenWorkersCommand_Execute, OpenWorkersCommand_CanExecute);
         }
 
         #endregion
@@ -68,12 +68,12 @@ namespace TaskManager_Practice.ViewModels
         #region Commands handlers
 
         // Тут какое-то условие можешь придумать, если не надо то сноси
-        private bool OpenFirstPage_CanExecute(object arg) => true;
-        private void OpenFirstPage_Execute(object obj)=>  AppNavigation.Open(PageID.One);
+        private bool OpenProjectsCommand_CanExecute(object arg) => true;
+        private void OpenProjectsCommand_Execute(object obj)=>  AppNavigation.Open(PageID.Projects);
         
         // Тут какое-то условие можешь придумать, если не надо то сноси
-        private bool OpenSecondPage_CanExecute(object arg) => true;
-        private void OpenSecondPage_Execute(object obj)=>  AppNavigation.Open(PageID.Two);
+        private bool OpenWorkersCommand_CanExecute(object arg) => true;
+        private void OpenWorkersCommand_Execute(object obj)=>  AppNavigation.Open(PageID.Workers);
 
         
         private bool CanOpenChildWindow(object ob) => true;

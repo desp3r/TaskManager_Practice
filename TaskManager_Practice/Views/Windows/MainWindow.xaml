@@ -10,16 +10,16 @@
         Title="{Binding Title}" Height="450" Width="800">   
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="15*"></ColumnDefinition>
-            <ColumnDefinition Width="Auto"></ColumnDefinition>
-            <ColumnDefinition Width="85*"></ColumnDefinition>
+            <ColumnDefinition Width="15*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="85*"/>
         </Grid.ColumnDefinitions>
         <Rectangle Grid.Column="0" Fill="DarkCyan"/>
         <StackPanel Grid.Column="0" VerticalAlignment="Center">
             <Button Content="Projects" Padding="5" Style="{StaticResource MaterialDesignOutlinedButton}" BorderBrush="White" Foreground="White" 
-                    Command="{Binding OpenFirstPage}"/>
+                    Command="{Binding OpenProjectsCommand}"/>
             <Button Content="Workers" Padding="5" Style="{StaticResource MaterialDesignOutlinedButton}" BorderBrush="White" Foreground="White"
-                    Command="{Binding OpenSecondPage}"/>
+                    Command="{Binding OpenWorkersCommand}"/>
         </StackPanel>
         <Frame Grid.Column="1" x:Name="MainFrame" NavigationUIVisibility="Hidden"/>
 

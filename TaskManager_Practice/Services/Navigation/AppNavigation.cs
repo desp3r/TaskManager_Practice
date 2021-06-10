@@ -47,8 +47,8 @@ namespace TaskManager_Practice.Services.Navigation
 
         private static Page GeneratePage(PageID page) => page switch
         {
-            PageID.One => new Page1(),
-            PageID.Two => new Page2(),
+            PageID.Projects => new ProjectsPage(),
+            PageID.Workers => new WorkersPage(),
             _ => throw new NotImplementedException()
         };
 
