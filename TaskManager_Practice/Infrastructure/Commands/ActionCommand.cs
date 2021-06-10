@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TaskManager_Practice.Infrastructure.Base;
 
 namespace TaskManager_Practice.Infrastructure.Commands

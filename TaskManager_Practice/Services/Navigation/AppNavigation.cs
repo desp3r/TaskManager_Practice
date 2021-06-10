@@ -3,7 +3,6 @@ using System.Windows.Controls;
 using System.Windows.Navigation;
 using TaskManager_Practice.Infrastructure;
 using TaskManager_Practice.Views.Pages;
-using TaskManager_Practice.Views.Windows;
 
 namespace TaskManager_Practice.Services.Navigation
 {
@@ -15,7 +14,7 @@ namespace TaskManager_Practice.Services.Navigation
         private static Page _CurrentPage;
 
         #endregion
-        
+
         #region Public Methods
 
         public static Result Open(PageID page)
@@ -29,7 +28,7 @@ namespace TaskManager_Practice.Services.Navigation
                 _CurrentPage = newPage;
                 return Result.Ok;
             }
-            catch(Exception exception)
+            catch (Exception exception)
             {
                 Logger.WriteError(exception.Message);
                 return Result.Exception;
@@ -41,7 +40,7 @@ namespace TaskManager_Practice.Services.Navigation
             _Navigation = service;
             return Result.Ok;
         }
-        
+
         #endregion
 
 

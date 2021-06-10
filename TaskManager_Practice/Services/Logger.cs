@@ -10,9 +10,9 @@ namespace TaskManager_Practice.Services
     public static class Logger
     {
         private const int MAX_FILE_LENGTH = 200000;
-        private static string __CurrentLogFileName;
-        private static bool __IsActive;
-        public static string CurrentLogFileName => Paths.LOGS_FOLDER + "\\" + __CurrentLogFileName;
+        private static string _CurrentLogFileName;
+        private static bool _IsActive;
+        public static string CurrentLogFileName => Paths.LOGS_FOLDER + "\\" + _CurrentLogFileName;
 
         private static string CreateLogFileName(int partIndex)
         {
@@ -22,26 +22,26 @@ namespace TaskManager_Practice.Services
 
         public static void Initialize()
         {
-            if (__IsActive)
+            if (_IsActive)
                 return;
 
-            __IsActive = true;
-            int partIndex = 0;
+            _IsActive = true;
+            var partIndex = 0;
             while (true)
             {
-                __CurrentLogFileName = CreateLogFileName(partIndex);
+                _CurrentLogFileName = CreateLogFileName(partIndex);
 
-                string logFileName = CurrentLogFileName;
+                var logFileName = CurrentLogFileName;
 
                 if (!File.Exists(logFileName))
                 {
-                    StreamWriter sw = File.CreateText(logFileName);
+                    using var sw = File.CreateText(logFileName);
                     sw.Close();
                     sw.Dispose();
                     break;
                 }
 
-                byte[] fileBytes = File.ReadAllBytes(logFileName);
+                var fileBytes = File.ReadAllBytes(logFileName);
                 if (fileBytes.Length > MAX_FILE_LENGTH)
                 {
                     partIndex++;
@@ -55,7 +55,7 @@ namespace TaskManager_Practice.Services
         [MethodImpl(MethodImplOptions.Synchronized)]
         public static void Write(string message)
         {
-            if (string.IsNullOrEmpty(message) || !__IsActive)
+            if (string.IsNullOrEmpty(message) || !_IsActive)
                 return;
             try
             {
@@ -65,23 +65,16 @@ namespace TaskManager_Practice.Services
             }
             catch (IOException)
             {
+                // ignored
             }
         }
 
         public static void WriteCritical(string message) => Write("CRITICAL! " + message);
-
         public static void WriteError(string message) => Write("ERROR! " + message);
-
         public static void WriteWarning(string message) => Write("WARNING! " + message);
-
-
         public static void WriteInfo(string message) => Write("INFO: " + message);
 
-
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public static void WriteWithThreadId(string message)
-        {
-            Write(message + " THREAD: " + Thread.CurrentThread.ManagedThreadId);
-        }
+        public static void WriteWithThreadId(string message) => Write(message + " THREAD: " + Thread.CurrentThread.ManagedThreadId);
     }
 }
