@@ -12,6 +12,7 @@ namespace TaskManager_Practice
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new MainWindowViewModel();
         }
     }
 }

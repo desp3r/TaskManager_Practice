@@ -6,13 +6,26 @@
         xmlns:local="clr-namespace:TaskManager_Practice"
         xmlns:vm="clr-namespace:TaskManager_Practice.ViewModels"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:cms="clr-namspace:TaskManager_Practics.Infrastructure.Commands"
         mc:Ignorable="d"
         Title="{Binding Title}" Height="450" Width="800">   
-    <Window.DataContext>
-        <vm:MainWindowViewModel/>
-    </Window.DataContext>
     <Grid>
-        <Button x:Name="button1" Margin="5" Content="First button" Height="30" Width="300" HorizontalAlignment="Left"
-                VerticalAlignment="Top"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="15*"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="85*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Rectangle Grid.Column="0" Fill="DarkCyan"/>
+        <StackPanel Grid.Column="0" VerticalAlignment="Center">
+            <Button Content="Projects" Padding="5" Style="{StaticResource MaterialDesignOutlinedButton}" BorderBrush="White" Foreground="White" 
+                    Command="{Binding OpenPage}"/>
+            <Button Content="Workers" Padding="5" Style="{StaticResource MaterialDesignOutlinedButton}" BorderBrush="White" Foreground="White"/>
+        </StackPanel>
+        <Frame Grid.Column="1"/>
+
+        <Grid Grid.Column="1">
+        <!--Здесь должен быть переход на страницу, где будут отображаться данные о проектах-->
+        </Grid>
+        
     </Grid>
 </Window>
