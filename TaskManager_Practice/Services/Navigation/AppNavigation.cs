@@ -27,7 +27,7 @@ namespace TaskManager_Practice.Services.Navigation
                 _Navigation.Navigate(newPage);
                 _CurrentPage = newPage;
                 return Result.Ok;
-            }
+            }dd
             catch (Exception exception)
             {
                 Logger.WriteError(exception.Message);
