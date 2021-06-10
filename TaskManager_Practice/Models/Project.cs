@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace TaskManager_Practice.Models
 {
-    class Project
+    public class Project
     {
-        
+        public string Name { get; set; }
     }
 }
