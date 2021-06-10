@@ -31,6 +31,7 @@ namespace TaskManager_Practice.Services.Navigation
             }
             catch(Exception exception)
             {
+                Logger.WriteError(exception.Message);
                 return Result.Exception;
             }
         }
