@@ -21,5 +21,15 @@ namespace TaskManager_Practice.ViewModels
         }
 
         #endregion 
+
+        public ICommand SomeCommandTemplate { get; }
+
+        private bool CanSomeCommandTemlateExecute(object ob) => true;
+
+        private void OnSomeCommandTemplate(object ob)
+        {
+            //Здесь описание работы команды, пример:
+            //Application.Current.Shutdown();
+        }
     }
 }
