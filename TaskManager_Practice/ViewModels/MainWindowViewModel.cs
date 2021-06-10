@@ -12,6 +12,7 @@ using TaskManager_Practice.Infrastructure.Commands;
 using TaskManager_Practice.Models;
 using TaskManager_Practice.ViewModels.Base;
 using TaskManager_Practice.Views.Windows;
+using Task = TaskManager_Practice.Models.Task;
 
 namespace TaskManager_Practice.ViewModels
 {
@@ -32,6 +33,34 @@ namespace TaskManager_Practice.ViewModels
 
 
         #region Commands
+
+        public ObservableCollection<Project> Projects { get; }
+
+        private Project _SelectedProject;
+
+        public Project SelectedProject
+        {
+            get => _SelectedProject;
+            set => Set(ref _SelectedProject, value);
+        }
+
+        public ObservableCollection<Project> Projects { get; }
+
+        private Task _SelectedTask;
+
+        public Project SelectedTask
+        {
+            get => _SelectedProject;
+            set => Set(ref _SelectedProject, value);
+        }
+
+        private Project _SelectedProject;
+
+        public Project SelectedProject
+        {
+            get => _SelectedProject;
+            set => Set(ref _SelectedProject, value);
+        }
 
         public ICommand OpenNewWindow { get; }
 
@@ -85,7 +114,7 @@ namespace TaskManager_Practice.ViewModels
 
         #region Data
 
-        public ObservableCollection<Project> Projects { get; }
+
 
         #endregion
 

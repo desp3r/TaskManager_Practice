@@ -11,7 +11,8 @@
       Title="Page2">
     <Grid>
         <GroupBox Header="Projects">
-            <ListBox ItemsSource="{Binding Projects}" DisplayMemberPath="Name"/>
+            <ListBox ItemsSource="{Binding Projects}" DisplayMemberPath="Name"
+                     SelectedItem="{Binding SelectedProject}"/>
         </GroupBox>
     </Grid>
 </Page>
