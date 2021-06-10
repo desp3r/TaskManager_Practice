@@ -10,7 +10,7 @@ namespace TaskManager_Practice.Infrastructure.Commands
         
         public ActionCommand(Action<object> Execute, Func<object, bool> CanExecute)
         {
-            _Execute = Execute ?? throw new ArgumentNullException(nameof(Execute));
+            _Execute = Executedd ?? throw new ArgumentNullException(nameof(Execute));
             _CanExecute = CanExecute;
         }
 
