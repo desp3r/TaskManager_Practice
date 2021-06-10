@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,6 +9,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Navigation;
 using TaskManager_Practice.Infrastructure.Commands;
+using TaskManager_Practice.Models;
 using TaskManager_Practice.ViewModels.Base;
 using TaskManager_Practice.Views.Windows;
 
@@ -80,10 +83,23 @@ namespace TaskManager_Practice.ViewModels
 
         #endregion
 
+        #region Data
+
+        public ObservableCollection<Project> Projects { get; }
+
+        #endregion
+
         public MainWindowViewModel()
         {
             OpenNewWindow = new ActionCommand(OnOpenChildWindow, CanOpenChildWindow);
             OpenPage = new ActionCommand(OnOpenPage, CanOpenPage);
+
+            var project_index = 1;
+            var projects = Enumerable.Range(1, 20).Select(i => new Project
+            {
+                Name = $"Name {project_index}"
+            });
+
         }
 
     }

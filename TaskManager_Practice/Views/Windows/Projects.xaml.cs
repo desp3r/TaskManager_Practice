@@ -12,17 +12,19 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TaskManager_Practice.ViewModels;
 
 namespace TaskManager_Practice.Views.Windows
 {
     /// <summary>
     /// Логика взаимодействия для Page2.xaml
     /// </summary>
-    public partial class Page2 : Page
+    public partial class Projects : Page
     {
-        public Page2()
+        public Projects()
         {
             InitializeComponent();
+            DataContext = new MainWindowViewModel();
         }
     }
 }
