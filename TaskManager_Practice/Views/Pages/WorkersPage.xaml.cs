@@ -1,6 +1,4 @@
-﻿using System.Windows.Controls;
-
-namespace TaskManager_Practice.Views.Windows
+﻿namespace TaskManager_Practice.Views.Pages
 {
     public partial class WorkersPage
     {

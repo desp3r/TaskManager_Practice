@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Navigation;
 using TaskManager_Practice.Infrastructure;
+using TaskManager_Practice.Views.Pages;
 using TaskManager_Practice.Views.Windows;
 
 namespace TaskManager_Practice.Services.Navigation

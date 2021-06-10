@@ -1,6 +1,6 @@
 ﻿using TaskManager_Practice.ViewModels;
 
-namespace TaskManager_Practice.Views.Windows
+namespace TaskManager_Practice.Views.Pages
 {
     public partial class ProjectsPage
     {
