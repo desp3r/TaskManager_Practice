@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using TaskManager_Practice.EntityFramework;
 using TaskManager_Practice.Models;
 using TaskManager_Practice.Views.Windows;
 
@@ -12,21 +13,12 @@ namespace TaskManager_Practice.Views.Pages
         {
             InitializeComponent();
 
-            var projects = new List<Project>()
-            {
-                new()
-                {
-                    Name = "Oleg"
-                },
-                new()
-                {
-                    Name = "Oleg2"
-                }
-            };
-
+            using var db = new MyDbContext();
+            
             DataContext = this;
-
-            MainGrid.ItemsSource = projects;
+            
+            MainGrid.ItemsSource = (from project in db.Projects
+                select  project).ToList();
         }
 
         
@@ -34,6 +26,36 @@ namespace TaskManager_Practice.Views.Pages
         {
             var project = MainGrid.SelectedItem as Project;
             new AddProjectWindow(project).Show();
+        }
+
+        private void AddProjectClick(object sender, RoutedEventArgs e)
+        {
+         
+            using var db = new MyDbContext();
+            
+            db.Projects.Add(new()
+            {
+                Name = "Курсовая"
+            });
+
+            db.SaveChanges();
+            
+            
+            MainGrid.ItemsSource = (from project in db.Projects
+                select  project).ToList();
+        }
+
+        private void RemoveAllClick(object sender, RoutedEventArgs e)
+        {
+            using var db = new MyDbContext();
+            
+            db.RemoveProjects();
+                
+            db.SaveChanges();
+            
+            
+            MainGrid.ItemsSource = (from project in db.Projects
+                select  project).ToList();
         }
     }
 }

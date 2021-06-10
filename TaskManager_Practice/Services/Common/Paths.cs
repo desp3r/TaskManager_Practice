@@ -10,6 +10,7 @@ namespace TaskManager_Practice.Services.Common
     {
         [NotNull] public static readonly string BASE_DIR = Directory.GetCurrentDirectory();
         [NotNull] public static readonly string LOGS_FOLDER = $"{BASE_DIR}/Logs";
+        [NotNull] public static readonly string DB_PATH = BASE_DIR + "/myDb.db";
 
         /// <summary>
         /// Создание папок
