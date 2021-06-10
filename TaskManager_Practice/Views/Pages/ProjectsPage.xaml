@@ -12,7 +12,15 @@
     <Grid>
         <GroupBox Header="Projects">
             <ListBox ItemsSource="{Binding Projects}" DisplayMemberPath="Name"
-                     SelectedItem="{Binding SelectedProject}"/>
+                     SelectedItem="{Binding SelectedProject}"
+                     
+                     />
         </GroupBox>
+        
+        <DataGrid
+            IsReadOnly="True"
+            x:Name="MainGrid"
+            SelectionChanged="MainGrid_OnSelectionChanged"
+            />
     </Grid>
 </Page>

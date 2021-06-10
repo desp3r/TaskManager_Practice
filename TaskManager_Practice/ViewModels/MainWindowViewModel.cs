@@ -80,7 +80,7 @@ namespace TaskManager_Practice.ViewModels
 
         private void OnOpenChildWindow(object ob)
         {
-            AddProjectWindow addProjectWindow = new AddProjectWindow();
+            AddProjectWindow addProjectWindow = new AddProjectWindow(null);
             addProjectWindow.Show();
         }
 

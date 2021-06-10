@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TaskManager_Practice.Models;
 
 namespace TaskManager_Practice.Views.Windows
 {
@@ -19,9 +20,12 @@ namespace TaskManager_Practice.Views.Windows
     /// </summary>
     public partial class AddProjectWindow : Window
     {
-        public AddProjectWindow()
+        public string Name { get; set; }
+        public AddProjectWindow(Project project)
         {
             InitializeComponent();
+            TextBlock.Text = project.Name;
+            DataContext = this;
         }
     }
 }
