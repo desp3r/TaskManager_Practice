@@ -5,7 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TaskManager_Practice"
         xmlns:vm="clr-namespace:TaskManager_Practice.ViewModels"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:cms="clr-namspace:TaskManager_Practics.Infrastructure.Commands"
         mc:Ignorable="d"
         Title="{Binding Title}" Height="450" Width="800">   
@@ -18,10 +17,11 @@
         <Rectangle Grid.Column="0" Fill="DarkCyan"/>
         <StackPanel Grid.Column="0" VerticalAlignment="Center">
             <Button Content="Projects" Padding="5" Style="{StaticResource MaterialDesignOutlinedButton}" BorderBrush="White" Foreground="White" 
-                    Command="{Binding OpenPage}"/>
-            <Button Content="Workers" Padding="5" Style="{StaticResource MaterialDesignOutlinedButton}" BorderBrush="White" Foreground="White"/>
+                    Command="{Binding OpenFirstPage}"/>
+            <Button Content="Workers" Padding="5" Style="{StaticResource MaterialDesignOutlinedButton}" BorderBrush="White" Foreground="White"
+                    Command="{Binding OpenSecondPage}"/>
         </StackPanel>
-        <Frame Grid.Column="1"/>
+        <Frame Grid.Column="1" x:Name="MainFrame" NavigationUIVisibility="Hidden"/>
 
         <Grid Grid.Column="1">
         <!--Здесь должен быть переход на страницу, где будут отображаться данные о проектах-->

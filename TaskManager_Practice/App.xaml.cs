@@ -1,17 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using TaskManager_Practice.Services.Common;
+using TaskManager_Practice.Services.Navigation;
 
 namespace TaskManager_Practice
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
-    public partial class App : Application
+    public partial class App
     {
+        /// <summary>
+        /// Первоначальная настройка приложения
+        /// </summary>
+        /// <param name="window">Основное окно нашего приложения</param>
+        public static void Initialize(MainWindow window)
+        {
+            Paths.CreateFoldersIfNotExist();
+            AppNavigation.Initialize(window.MainFrame.NavigationService);
+        }
     }
+    
+    
 }

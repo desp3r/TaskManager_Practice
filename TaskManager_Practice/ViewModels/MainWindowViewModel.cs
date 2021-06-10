@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Navigation;
+using TaskManager_Practice.Infrastructure;
 using TaskManager_Practice.Infrastructure.Commands;
+using TaskManager_Practice.Services.Navigation;
 using TaskManager_Practice.ViewModels.Base;
 using TaskManager_Practice.Views.Windows;
 
@@ -14,10 +16,14 @@ namespace TaskManager_Practice.ViewModels
 {
     internal class MainWindowViewModel : ViewModel
     {
-        // Заголовок окна
-        #region Title
+        #region Private Fields
 
         private string _Title;
+        
+
+        #endregion
+
+        #region Properties
 
         public string Title
         {
@@ -28,10 +34,48 @@ namespace TaskManager_Practice.ViewModels
         #endregion
 
 
+
+
+        #region Private Methods
+
+        
+
+        #endregion
+
+        
+        
         #region Commands
 
+        public ICommand OpenFirstPage { get; }
+        public ICommand OpenSecondPage { get; }
         public ICommand OpenNewWindow { get; }
+        
+        #endregion
 
+
+        #region Ctor
+
+        public MainWindowViewModel()
+        {
+            OpenNewWindow = new ActionCommand(OnOpenChildWindow, CanOpenChildWindow);
+            OpenFirstPage = new ActionCommand(OpenFirstPage_Execute, OpenFirstPage_CanExecute);
+            OpenSecondPage = new ActionCommand(OpenSecondPage_Execute, OpenSecondPage_CanExecute);
+        }
+
+        #endregion
+        
+        
+        #region Commands handlers
+
+        // Тут какое-то условие можешь придумать, если не надо то сноси
+        private bool OpenFirstPage_CanExecute(object arg) => true;
+        private void OpenFirstPage_Execute(object obj)=>  AppNavigation.Open(PageID.One);
+        
+        // Тут какое-то условие можешь придумать, если не надо то сноси
+        private bool OpenSecondPage_CanExecute(object arg) => true;
+        private void OpenSecondPage_Execute(object obj)=>  AppNavigation.Open(PageID.Two);
+
+        
         private bool CanOpenChildWindow(object ob) => true;
 
         private void OnOpenChildWindow(object ob)
@@ -40,51 +84,8 @@ namespace TaskManager_Practice.ViewModels
             addProjectWindow.Show();
         }
 
-        internal enum Pages
-        {
-            One, Two
-        }
-
-        
-        
-        private Page1 page1 = new Page1();
-
-        public ICommand SwitchPage { get; }
-
-        private UserControl page;
-        public UserControl Page
-        {
-            get { return page; }
-            set
-            {
-                page = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private bool CanSwitchPage(object ob) => true;
-
-        private void OnSwitchPage(object ob)
-        {
-           
-        }
-        
-        public ICommand OpenPage { get; }
-
-        private bool CanOpenPage(object ob) => true;
-
-        private void OnOpenPage(object ob)
-        {
-           
-        }
-
         #endregion
-
-        public MainWindowViewModel()
-        {
-            OpenNewWindow = new ActionCommand(OnOpenChildWindow, CanOpenChildWindow);
-            OpenPage = new ActionCommand(OnOpenPage, CanOpenPage);
-        }
+        
 
     }
 }
