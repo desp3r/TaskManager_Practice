@@ -20,12 +20,17 @@ namespace TaskManager_Practice.Views.Windows
     /// </summary>
     public partial class AddProjectWindow : Window
     {
-        public string Name { get; set; }
         public AddProjectWindow(Project project)
         {
             InitializeComponent();
-            TextBlock.Text = project.Name;
             DataContext = this;
+            infoName.Text = project.Name;
+            
+        }
+
+        private void DataGridWorkers_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
         }
     }
 }

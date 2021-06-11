@@ -7,10 +7,22 @@
         mc:Ignorable="d"
         Title="AddProjectWindow" Height="450" Width="800">
     <Grid>
-        <TextBlock Text="Это воспомогательное окно" FontSize="20"/>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
         
-        <TextBlock
-            x:Name="TextBlock"
-            />
+        <StackPanel Orientation="Vertical">
+            <TextBox x:Name="infoName"></TextBox>
+            <TextBox x:Name="infoDeadline"></TextBox>
+            <TextBox x:Name="info"></TextBox>
+        </StackPanel>
+        
+        <DataGrid Grid.Row="1"
+                  x:Name="DataGridWorkers"
+                  IsReadOnly="True"
+                  SelectionChanged="DataGridWorkers_OnSelectionChanged">
+            
+        </DataGrid>
     </Grid>
 </Window>

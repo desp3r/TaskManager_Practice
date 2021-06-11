@@ -10,9 +10,9 @@
         Title="{Binding Title}" Height="450" Width="800">   
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="15*"/>
+            <ColumnDefinition Width="160"/>
             <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="85*"/>
+            <ColumnDefinition Width="640"/>
         </Grid.ColumnDefinitions>
         <Rectangle Grid.Column="0" Fill="DarkCyan"/>
         <StackPanel Grid.Column="0" VerticalAlignment="Center">
@@ -21,10 +21,10 @@
             <Button Content="Workers" Padding="5" Style="{StaticResource MaterialDesignOutlinedButton}" BorderBrush="White" Foreground="White"
                     Command="{Binding OpenWorkersCommand}"/>
         </StackPanel>
-        <Frame Grid.Column="1" x:Name="MainFrame" NavigationUIVisibility="Hidden"/>
+        
 
-        <Grid Grid.Column="1">
-        <!--Здесь должен быть переход на страницу, где будут отображаться данные о проектах-->
+        <Grid Grid.Column="2">
+            <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden"/>
         </Grid>
         
     </Grid>

@@ -14,48 +14,73 @@ namespace TaskManager_Practice.Views.Pages
             InitializeComponent();
 
             using var db = new MyDbContext();
-            
+
             DataContext = this;
-            
+
             MainGrid.ItemsSource = (from project in db.Projects
-                select  project).ToList();
+                select project).ToList();
         }
 
+        private Project SelectedProject { get; set; }
         
         private void MainGrid_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var project = MainGrid.SelectedItem as Project;
-            new AddProjectWindow(project).Show();
+            SelectedProject = MainGrid.SelectedItem as Project;
         }
+
+        private void RemoveProject(object sender, RoutedEventArgs e)
+        {
+            using var db = new MyDbContext();
+
+            db.RemoveProject(SelectedProject);
+
+            db.SaveChanges();
+
+
+            MainGrid.ItemsSource = (from project in db.Projects
+                select project).ToList();
+        }
+        
+        
+        
+        
 
         private void AddProjectClick(object sender, RoutedEventArgs e)
         {
-         
             using var db = new MyDbContext();
-            
+
             db.Projects.Add(new()
             {
                 Name = "Курсовая"
             });
 
             db.SaveChanges();
-            
-            
+
+
             MainGrid.ItemsSource = (from project in db.Projects
-                select  project).ToList();
+                select project).ToList();
         }
 
         private void RemoveAllClick(object sender, RoutedEventArgs e)
         {
             using var db = new MyDbContext();
-            
+
             db.RemoveProjects();
-                
+
             db.SaveChanges();
-            
-            
+
+
             MainGrid.ItemsSource = (from project in db.Projects
-                select  project).ToList();
+                select project).ToList();
+        }
+
+
+        private void EditProject(object sender, RoutedEventArgs e)
+        {
+            using var db = new MyDbContext();
+            new EditProjectWindow(SelectedProject).ShowDialog();
+            MainGrid.ItemsSource = (from project in db.Projects
+                select project).ToList();
         }
     }
 }

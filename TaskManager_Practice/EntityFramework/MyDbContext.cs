@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using Microsoft.Data.Sqlite;
@@ -22,6 +23,24 @@ namespace TaskManager_Practice.EntityFramework
             var list = Projects.ToList();
             for (var i = list.Count - 1; i >= 0; i--)
                 Projects.Remove(list[i]);
+        }
+
+        public void RemoveProject(Project project)
+        {
+            Projects.Remove(project);
+        }
+
+        public void EditProject(Project project)
+        {
+            var list = Projects.ToList();
+            for (var i = list.Count - 1; i >= 0; i--)
+            {
+                if (list[i].Id == project.Id)
+                {
+                    Projects.Remove(list[i]);
+                    Projects.Add(project);
+                }
+            }
         }
 
         // public void DropData()
