@@ -14,6 +14,7 @@
         
         <StackPanel Orientation="Vertical">
             <TextBox x:Name="infoName"></TextBox>
+            <TextBox x:Name="infoTime"></TextBox>
             <Button Content="Add" Click="AddProject"></Button>
         </StackPanel>
         

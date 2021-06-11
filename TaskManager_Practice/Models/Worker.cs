@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -19,6 +20,8 @@ namespace TaskManager_Practice.Models
         public string Surname { get; set; }
 
         public ICollection<Project> Projects;
+
+        public ICollection<Task> Tasks;
 
         public Worker()
         {

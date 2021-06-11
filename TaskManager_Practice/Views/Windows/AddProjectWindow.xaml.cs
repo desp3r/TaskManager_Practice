@@ -36,7 +36,7 @@ namespace TaskManager_Practice.Views.Windows
         private void AddProject(object sender, RoutedEventArgs e)
         {
             var db = new MyDbContext();
-            db.Add(new Project(infoName.Text));
+            db.AddProject(new Project(infoName.Text));
             db.SaveChanges();
             this.Close();
         }

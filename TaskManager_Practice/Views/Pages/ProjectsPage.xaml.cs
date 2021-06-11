@@ -41,10 +41,6 @@ namespace TaskManager_Practice.Views.Pages
                 select project).ToList();
         }
         
-        
-        
-        
-
         private void AddProjectClick(object sender, RoutedEventArgs e)
         {
             using var db = new MyDbContext();
