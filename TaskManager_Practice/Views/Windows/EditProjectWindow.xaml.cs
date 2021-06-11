@@ -19,10 +19,9 @@ namespace TaskManager_Practice.Views.Windows
         private void SaveChanges(object sender, RoutedEventArgs e)
         {
             var db = new MyDbContext();
-            
+            _project.Name = InfoName.Text;
             db.EditProject(_project);
-            db.SaveChanges();
-            this.Close();
+            Close();
         }
     }
 }

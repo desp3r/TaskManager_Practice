@@ -35,17 +35,19 @@ namespace TaskManager_Practice.EntityFramework
             Projects.Remove(project);
         }
 
-        // не работает
+        // работает
         public void EditProject(Project project)
         {
-            var list = Projects.ToList();
-            for (var i = list.Count - 1; i >= 0; i--)
-            {
-                if (list[i].Id == project.Id)
-                {
-                    Projects.Update(project);
-                }
-            }
+            var temp = Projects.FirstOrDefault(p => p.Id == project.Id);
+
+            if (temp == null)
+                return;
+
+            temp.Name = project.Name;
+
+            Entry(temp).State = EntityState.Modified;
+
+            SaveChanges();
         }
 
         // public void DropData()
