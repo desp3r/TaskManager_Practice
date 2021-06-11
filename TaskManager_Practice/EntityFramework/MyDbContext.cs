@@ -25,11 +25,17 @@ namespace TaskManager_Practice.EntityFramework
                 Projects.Remove(list[i]);
         }
 
+
+        public void AddProject(Project project)
+        {
+            Projects.Add(project);
+        }
         public void RemoveProject(Project project)
         {
             Projects.Remove(project);
         }
 
+        // не работает
         public void EditProject(Project project)
         {
             var list = Projects.ToList();
@@ -37,8 +43,7 @@ namespace TaskManager_Practice.EntityFramework
             {
                 if (list[i].Id == project.Id)
                 {
-                    Projects.Remove(list[i]);
-                    Projects.Add(project);
+                    Projects.Update(project);
                 }
             }
         }

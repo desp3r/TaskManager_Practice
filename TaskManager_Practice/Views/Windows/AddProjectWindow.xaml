@@ -14,15 +14,9 @@
         
         <StackPanel Orientation="Vertical">
             <TextBox x:Name="infoName"></TextBox>
-            <TextBox x:Name="infoDeadline"></TextBox>
-            <TextBox x:Name="info"></TextBox>
+            <Button Content="Add" Click="AddProject"></Button>
         </StackPanel>
         
-        <DataGrid Grid.Row="1"
-                  x:Name="DataGridWorkers"
-                  IsReadOnly="True"
-                  SelectionChanged="DataGridWorkers_OnSelectionChanged">
-            
-        </DataGrid>
+        
     </Grid>
 </Window>

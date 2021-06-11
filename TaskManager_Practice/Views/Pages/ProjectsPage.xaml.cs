@@ -48,15 +48,8 @@ namespace TaskManager_Practice.Views.Pages
         private void AddProjectClick(object sender, RoutedEventArgs e)
         {
             using var db = new MyDbContext();
-
-            db.Projects.Add(new()
-            {
-                Name = "Курсовая"
-            });
-
-            db.SaveChanges();
-
-
+            new AddProjectWindow().ShowDialog();
+            
             MainGrid.ItemsSource = (from project in db.Projects
                 select project).ToList();
         }

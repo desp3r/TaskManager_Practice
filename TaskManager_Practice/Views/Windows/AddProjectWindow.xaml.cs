@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Microsoft.EntityFrameworkCore;
+using TaskManager_Practice.EntityFramework;
 using TaskManager_Practice.Models;
 
 namespace TaskManager_Practice.Views.Windows
@@ -20,17 +22,23 @@ namespace TaskManager_Practice.Views.Windows
     /// </summary>
     public partial class AddProjectWindow : Window
     {
-        public AddProjectWindow(Project project)
+        public AddProjectWindow()
         {
             InitializeComponent();
             DataContext = this;
-            infoName.Text = project.Name;
-            
         }
 
         private void DataGridWorkers_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             
+        }
+
+        private void AddProject(object sender, RoutedEventArgs e)
+        {
+            var db = new MyDbContext();
+            db.Add(new Project(infoName.Text));
+            db.SaveChanges();
+            this.Close();
         }
     }
 }
