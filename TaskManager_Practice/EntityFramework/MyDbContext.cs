@@ -11,13 +11,31 @@ namespace TaskManager_Practice.EntityFramework
     public class MyDbContext : DbContext
     {
 
-        #region Projects Operations
+        public void RemoveWorkers()
+        {
+            var list = Workers.ToList();
+            for (var i = list.Count - 1; i >= 0; i--)
+                Workers.Remove(list[i]);
+        }
         
+        public void RemoveProjects()
+        {
+            var list = Projects.ToList();
+            for (var i = list.Count - 1; i >= 0; i--)
+                Projects.Remove(list[i]);
+        }
+
+
         public void AddProject(Project project)
         {
             Projects.Add(project);
         }
+        public void RemoveProject(Project project)
+        {
+            Projects.Remove(project);
+        }
 
+        // работает
         public void EditProject(Project project)
         {
             var temp = Projects.FirstOrDefault(p => p.Id == project.Id);
@@ -31,76 +49,8 @@ namespace TaskManager_Practice.EntityFramework
 
             SaveChanges();
         }
-        
-        public void RemoveProject(Project project)
-        {
-            Projects.Remove(project);
-        }
-        
-        public void RemoveProjects()
-        {
-            var list = Projects.ToList();
-            for (var i = list.Count - 1; i >= 0; i--)
-                Projects.Remove(list[i]);
-        }
-        
-        
-        #endregion
-        
-        #region Tasks Operations
 
-        public void AddTask(Task task)
-        {
-            Tasks.Add(task);
-        }
 
-        public void EditTask(Task task)
-        {
-            var temp = Tasks.FirstOrDefault(p => p.Id == task.Id);
-
-            if (temp == null)
-                return;
-
-            temp.Name = task.Name;
-
-            Entry(temp).State = EntityState.Modified;
-
-            SaveChanges();
-        }
-        
-        public void RemoveTask(Task task)
-        {
-            Tasks.Remove(task);
-        }
-        
-        public void RemoveTasks()
-        {
-            var list = Tasks.ToList();
-            for (var i = list.Count - 1; i >= 0; i--)
-                Tasks.Remove(list[i]);
-        }
-
-        #endregion
-        
-        #region Workers Operations
-
-        
-        
-        public void RemoveWorkers()
-                {
-                    var list = Workers.ToList();
-                    for (var i = list.Count - 1; i >= 0; i--)
-                        Workers.Remove(list[i]);
-                }
-        
-        
-
-        #endregion
-
-        /// <summary>
-        /// Получение коллекции работяг
-        /// </summary>
-        /// <returns></returns>
         public List<Worker> GetWorkers()
         {
             if (Workers.Count() == 0)
@@ -109,7 +59,8 @@ namespace TaskManager_Practice.EntityFramework
             return Workers.Include(a => a.Projects).ToList();
 
         }
-        
+
+
         public List<string> GetWorkersName()
         {
             List<string> list = new List<string>();
@@ -135,11 +86,10 @@ namespace TaskManager_Practice.EntityFramework
             .IsUnique();
         }
 
-        
+
+
         public DbSet<Project> Projects { get; set; }
         public DbSet<Worker> Workers { get; set; }
-
-        public DbSet<Task> Tasks { get; set; }
 
 
         public MyDbContext()

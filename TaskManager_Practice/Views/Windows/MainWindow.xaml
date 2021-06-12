@@ -7,23 +7,43 @@
         xmlns:vm="clr-namespace:TaskManager_Practice.ViewModels"
         xmlns:cms="clr-namspace:TaskManager_Practics.Infrastructure.Commands"
         mc:Ignorable="d"
-        Title="{Binding Title}" Height="450" Width="800">   
+        Title="{Binding Title}" Height="400" Width="800">   
     <Grid>
+        
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="160"/>
             <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="640"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
+        
         <Rectangle Grid.Column="0" Fill="DarkCyan"/>
-        <StackPanel Grid.Column="0" VerticalAlignment="Center">
-            <Button Content="Projects" Padding="5" Style="{StaticResource MaterialDesignOutlinedButton}" BorderBrush="White" Foreground="White" 
-                    Command="{Binding OpenProjectsCommand}"/>
-            <Button Content="Workers" Padding="5" Style="{StaticResource MaterialDesignOutlinedButton}" BorderBrush="White" Foreground="White"
-                    Command="{Binding OpenWorkersCommand}"/>
+        
+        <TextBlock VerticalAlignment="Top" 
+                   Text="TaskManager"
+                   FontWeight="Bold"
+                   FontSize="20"
+                   Foreground="Beige"
+                   Margin="15,10,15,0"/>
+        
+        <StackPanel Grid.Column="0"
+                    VerticalAlignment="Center">
+            
+            <RadioButton Content="Projects" 
+                         Style="{StaticResource MaterialDesignOutlinedButton}" 
+                         BorderBrush="Beige" Foreground="Beige" 
+                         Command="{Binding OpenProjectsCommand}"
+                         Margin="5,5,5,5"/>
+            
+            <RadioButton Content="Workers" 
+                         Style="{StaticResource MaterialDesignOutlinedButton}"
+                         BorderBrush="Beige" 
+                         Foreground="Beige"
+                         Command="{Binding OpenWorkersCommand}"
+                         Margin="5,0,5,0"/>
+            
         </StackPanel>
         
 
-        <Grid Grid.Column="2">
+        <Grid Grid.Column="1">
             <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden"/>
         </Grid>
         

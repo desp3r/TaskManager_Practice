@@ -5,21 +5,43 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:TaskManager_Practice.Views.Windows"
         mc:Ignorable="d"
-        Title="EditProjectWindow" Height="450" Width="800">
+        Title="EditProjectWindow" Height="350" Width="350">
     <Grid>
+        
         <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
-            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
         
-        <StackPanel Orientation="Vertical">
-            <TextBox x:Name="InfoName"/>
+        <StackPanel Grid.Row="0" 
+                    Orientation="Vertical"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+            
+            <TextBox x:Name="EditProjectName"
+                     Margin="5,10,0,0"
+                     Style="{StaticResource MaterialDesignTextBoxBase}"
+                     BorderBrush="DarkCyan"
+                     MinWidth="100"/>
+            
+            <TextBox x:Name="EditProjectTime"
+                     Margin="5,10,0,0"
+                     Style="{StaticResource MaterialDesignTextBoxBase}"
+                     BorderBrush="DarkCyan"
+                     MinWidth="100"/>
         </StackPanel>
         
-        <StackPanel Grid.Row="1" 
-                    Orientation="Horizontal">
-            
-            <Button Content="Save" Click="SaveChanges"></Button>
-        </StackPanel>
+        <Rectangle Grid.Row="1" Fill="DarkCyan"/>
+        
+        <RadioButton Grid.Row="1" 
+                     Content="Save" 
+                     VerticalAlignment="Bottom"
+                     HorizontalAlignment="Center"
+                     Style="{StaticResource MaterialDesignOutlinedButton}" 
+                     BorderBrush="Beige" 
+                     Foreground="Beige" 
+                     Click="SaveChangesClick"
+                     Margin="5,10,0,10"/>
+        
     </Grid>
 </Window>

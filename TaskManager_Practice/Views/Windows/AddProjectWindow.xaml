@@ -4,20 +4,50 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TaskManager_Practice.Views.Windows"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="AddProjectWindow" Height="450" Width="800">
+        Title="AddProjectWindow" Height="350" Width="350">
     <Grid>
+        
         <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
         
-        <StackPanel Orientation="Vertical">
-            <TextBox x:Name="infoName"></TextBox>
-            <TextBox x:Name="infoTime"></TextBox>
-            <Button Content="Add" Click="AddProject"></Button>
+        <StackPanel Grid.Row="0" 
+                    Orientation="Vertical"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+            
+            <TextBox x:Name="AddProjectName"
+                     Margin="5,10,0,0"
+                     Style="{StaticResource MaterialDesignTextBoxBase}"
+                     BorderBrush="DarkCyan"
+                     MinWidth="100"
+                     materialDesign:HintAssist.Hint="Project name here"
+                     materialDesign:HintAssist.IsFloating="True"/>
+            
+            <TextBox x:Name="AddProjectEnd"
+                     Margin="5,10,0,0"
+                     Style="{StaticResource MaterialDesignTextBoxBase}"
+                     BorderBrush="DarkCyan"
+                     MinWidth="100"
+                     materialDesign:HintAssist.Hint="Deadline here"
+                     materialDesign:HintAssist.IsFloating="True"/>
+            
         </StackPanel>
         
+        <Rectangle Grid.Row="1" Fill="DarkCyan"/>
+        
+        <RadioButton Grid.Row="1" 
+                     Content="Add" 
+                     VerticalAlignment="Bottom"
+                     HorizontalAlignment="Center"
+                     Style="{StaticResource MaterialDesignOutlinedButton}" 
+                     BorderBrush="Beige" 
+                     Foreground="Beige" 
+                     Click="AddProjectClick"
+                     Margin="5,10,0,10"/>
         
     </Grid>
 </Window>

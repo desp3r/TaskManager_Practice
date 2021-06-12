@@ -20,31 +20,38 @@
                 SelectionChanged="MainGrid_OnSelectionChanged"
             />
          
+        <Rectangle Grid.Row="1" Fill="DarkCyan"/>
         
-            <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="15">
-                <Button
-                    Margin="10"
-                    Content="Add project"
-                    Click="AddProjectClick"
-                />
-            
-                <Button
-                    Margin="10"
-                    Content="Remove All"
-                    Click="RemoveAllClick"
-                />
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        Grid.Row="1" 
+                        Margin="1">
                 
-                <Button
-                    Margin="10"
-                    Content="Remove"
-                    Click="RemoveProject"
-                />
+                <RadioButton Content="Add" 
+                             Style="{StaticResource MaterialDesignOutlinedButton}" 
+                             BorderBrush="Beige" Foreground="Beige" 
+                             Click="AddProjectClick"
+                             Margin="5,10,0,10"/>
                 
-                <Button
-                    Margin="10"
-                    Content="Edit"
-                    Click="EditProject"
-                />
+                 <RadioButton Content="Edit" 
+                              Style="{StaticResource MaterialDesignOutlinedButton}" 
+                              BorderBrush="Beige" Foreground="Beige" 
+                              Click="EditProjectClick"
+                              Margin="5,10,0,10"/>
+                
+                <RadioButton Content="Remove" 
+                             Style="{StaticResource MaterialDesignOutlinedButton}" 
+                             BorderBrush="Beige" Foreground="Beige" 
+                             Click="RemoveProjectClick"
+                             Margin="5,10,0,10"/>
+                
+                <RadioButton Content="Remove All" 
+                             Style="{StaticResource MaterialDesignOutlinedButton}" 
+                             BorderBrush="Beige" Foreground="Beige" 
+                             Click="RemoveAllClick"
+                             Margin="5,10,0,10"/>
+                
+               
             
             </StackPanel>
      

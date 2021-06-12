@@ -28,11 +28,14 @@ namespace TaskManager_Practice.Views.Pages
             SelectedProject = MainGrid.SelectedItem as Project;
         }
 
-        private void RemoveProject(object sender, RoutedEventArgs e)
+        private void RemoveProjectClick(object sender, RoutedEventArgs e)
         {
             using var db = new MyDbContext();
 
-            db.RemoveProject(SelectedProject);
+            if (SelectedProject != null)
+            {
+                db.RemoveProject(SelectedProject);
+            }
 
             db.SaveChanges();
 
@@ -64,10 +67,15 @@ namespace TaskManager_Practice.Views.Pages
         }
 
 
-        private void EditProject(object sender, RoutedEventArgs e)
+        private void EditProjectClick(object sender, RoutedEventArgs e)
         {
             using var db = new MyDbContext();
-            new EditProjectWindow(SelectedProject).ShowDialog();
+            
+            if (SelectedProject != null)
+            {
+                new EditProjectWindow(SelectedProject).ShowDialog();
+            }
+            
             MainGrid.ItemsSource = (from project in db.Projects
                 select project).ToList();
         }

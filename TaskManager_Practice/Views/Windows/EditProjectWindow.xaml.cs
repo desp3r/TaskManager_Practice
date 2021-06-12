@@ -12,14 +12,14 @@ namespace TaskManager_Practice.Views.Windows
         {
             _project = project;
             InitializeComponent();
-            InfoName.Text = _project.Name;
+            EditProjectName.Text = _project.Name;
             DataContext = this;
         }
 
-        private void SaveChanges(object sender, RoutedEventArgs e)
+        private void SaveChangesClick(object sender, RoutedEventArgs e)
         {
             var db = new MyDbContext();
-            _project.Name = InfoName.Text;
+            _project.Name = EditProjectName.Text;
             db.EditProject(_project);
             Close();
         }

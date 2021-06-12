@@ -28,15 +28,10 @@ namespace TaskManager_Practice.Views.Windows
             DataContext = this;
         }
 
-        private void DataGridWorkers_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            
-        }
-
-        private void AddProject(object sender, RoutedEventArgs e)
+        private void AddProjectClick(object sender, RoutedEventArgs e)
         {
             var db = new MyDbContext();
-            db.AddProject(new Project(infoName.Text));
+            db.AddProject(new Project(AddProjectName.Text));
             db.SaveChanges();
             this.Close();
         }
