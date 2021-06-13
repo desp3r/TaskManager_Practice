@@ -11,7 +11,6 @@ namespace TaskManager_Practice
             InitializeComponent();
             DataContext = new MainWindowViewModel();
             App.Initialize(this);
-            
         }
     }
 }

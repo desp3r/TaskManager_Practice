@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Security.Cryptography;
 using Microsoft.EntityFrameworkCore;
 using TaskManager_Practice.Infrastructure;
 using TaskManager_Practice.Models;
@@ -43,8 +44,10 @@ namespace TaskManager_Practice.EntityFramework
             NotNull(endTime, nameof(endTime));
             NotNull(worker, nameof(worker));
             NotNull(project, nameof(project));
-            
-            Task task = new(name, endTime, worker, project);
+
+            //Task task = new(name, endTime, worker, project);
+
+            Task task = new Task() { Name = name, StartTime = DateTime.Now, EndTime = endTime, Worker = worker, Project = project };
 
             var result = _taskValidator.Validate(task);
             if (!result.IsValid)
@@ -76,33 +79,111 @@ namespace TaskManager_Practice.EntityFramework
             return Result.Ok;
         }
 
-        public void EditProject(Project project, string name, DateTime deadline)
+        public Result EditProject(Project project, string name, DateTime deadline)
         {
+            NotNull(project, nameof(project));
+            NotNull(name, nameof(name));
+            NotNull(deadline, nameof(deadline));
+            
             var temp = Projects.FirstOrDefault(p => p.Id == project.Id);
 
             if (temp == null)
-                return;
+                return Result.Error;
 
             temp.Name = name;
             temp.Deadline = deadline;
+            
+            var result = _projectValidator.Validate(temp);
 
+            if (!result.IsValid)
+            {
+                Logger.WriteWarning(string.Join(',', result.Errors));
+                return Result.Error;
+            }
             Entry(temp).State = EntityState.Modified;
-
             SaveChanges();
+            return Result.Ok;
         }
+        
+        public Result EditTask(Task task, string name, DateTime endTime, Worker worker, Project project)
+        {
+            NotNull(task, nameof(task));
+            NotNull(name, nameof(name));
+            NotNull(endTime, nameof(endTime));
+            NotNull(worker, nameof(worker));
+            NotNull(project, nameof(project));
+
+            
+            var temp = Tasks.FirstOrDefault(t => t.Id == task.Id);
+
+            if (temp == null)
+                return Result.Error;
+
+            temp.Name = name;
+            temp.EndTime = endTime;
+            temp.Worker = worker;
+            temp.Project = project;
+            
+            var result = _taskValidator.Validate(temp);
+
+            if (!result.IsValid)
+            {
+                Logger.WriteWarning(string.Join(',', result.Errors));
+                return Result.Error;
+            }
+            Entry(temp).State = EntityState.Modified;
+            SaveChanges();
+            return Result.Ok;
+        }
+        
+        public Result EditWorker(Worker worker, string name, string surname, string position, string phoneNumber)
+        {
+            NotNull(worker, nameof(worker));
+            NotNull(name, nameof(name));
+            NotNull(surname, nameof(surname));
+            NotNull(position, nameof(position));
+            NotNull(phoneNumber, nameof(phoneNumber));
+            
+            var temp = Workers.FirstOrDefault(w => w.Id == worker.Id);
+
+            if (temp == null)
+                return Result.Error;
+
+            temp.Name = name;
+            temp.Surname = surname;
+            temp.Position = position;
+            temp.PhoneNumber = phoneNumber;
+            
+            var result = _workerValidator.Validate(temp);
+
+            if (!result.IsValid)
+            {
+                Logger.WriteWarning(string.Join(',', result.Errors));
+                return Result.Error;
+            }
+            Entry(temp).State = EntityState.Modified;
+            SaveChanges();
+            return Result.Ok;
+        }
+        
 
 
         public void RemoveProject(Project project)
         {
             Projects.Remove(project);
+            SaveChanges();
+        }
+        
+        public void RemoveTask(Task task)
+        {
+            Tasks.Remove(task);
+            SaveChanges();
         }
 
-
-        public void RemoveWorkers()
+        public void RemoveWorker(Worker worker)
         {
-            var list = Workers.ToList();
-            for (var i = list.Count - 1; i >= 0; i--)
-                Workers.Remove(list[i]);
+            Workers.Remove(worker);
+            SaveChanges();
         }
 
         public void RemoveProjects()
@@ -111,6 +192,22 @@ namespace TaskManager_Practice.EntityFramework
             for (var i = list.Count - 1; i >= 0; i--)
                 Projects.Remove(list[i]);
         }
+        
+        public void RemoveTasks()
+        {
+            var list = Workers.ToList();
+            for (var i = list.Count - 1; i >= 0; i--)
+                Workers.Remove(list[i]);
+        }
+                
+        public void RemoveWorkers()
+        {
+            var list = Workers.ToList();
+            for (var i = list.Count - 1; i >= 0; i--)
+                Workers.Remove(list[i]);
+        }
+
+
 
 
         // работает

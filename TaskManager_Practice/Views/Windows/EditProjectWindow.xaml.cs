@@ -14,14 +14,14 @@ namespace TaskManager_Practice.Views.Windows
             InitializeComponent();
 
             EditProjectName.Text = project.Name;
-            EditProjectTime.Text = project.Deadline.ToShortDateString();
+            // EditProjectTime.Text = project.Deadline.ToShortDateString();
             DataContext = this;
         }
 
         private void SaveChangesClick(object sender, RoutedEventArgs e)
         {
             var db = new MyDbContext();
-            db.EditProject(insideProject, EditProjectName.Text, DateTime.Parse(EditProjectTime.Text));
+            // db.EditProject(insideProject, EditProjectName.Text, DateTime.Parse(EditProjectTime.Text));
             Close();
         }
     }

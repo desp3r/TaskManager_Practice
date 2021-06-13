@@ -25,15 +25,5 @@ namespace TaskManager_Practice.Models
         
         public Project Project { get; set; }
 
-        public Task(string name, DateTime endTime, Worker worker, Project project)
-        {
-            Name = name;
-            StartTime = DateTime.Now;
-            EndTime = endTime;
-            Worker = worker;
-            Project = project;
-        }
-        
-
     }
 }
