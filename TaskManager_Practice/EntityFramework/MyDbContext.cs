@@ -42,7 +42,11 @@ namespace TaskManager_Practice.EntityFramework
             Task task = new(name, endTime, worker, project);
 
             var result = _taskValidator.Validate(task);
-            if (!result.IsValid) return Result.Error;
+            if (!result.IsValid)
+            {
+                Logger.WriteWarning(string.Join(',', result.Errors));
+                return Result.Error;
+            }
             Tasks.Add(task);
             SaveChanges();
             return Result.Ok;
@@ -52,7 +56,11 @@ namespace TaskManager_Practice.EntityFramework
         {
             Worker worker = new Worker(name, surname, position, phoneNumber);
             var result = _workerValidator.Validate(worker);
-            if (!result.IsValid) return Result.Error;
+            if (!result.IsValid)
+            {
+                Logger.WriteWarning(string.Join(',', result.Errors));
+                return Result.Error;
+            }
             Workers.Add(worker);
             SaveChanges();
             return Result.Ok;
