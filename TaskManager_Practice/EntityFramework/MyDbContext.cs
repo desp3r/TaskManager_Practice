@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using Microsoft.EntityFrameworkCore;
@@ -43,9 +44,9 @@ namespace TaskManager_Practice.EntityFramework
             NotNull(worker, nameof(worker));
             NotNull(project, nameof(project));
 
-            //Task task = new(name, endTime, worker, project);
 
-            Task task = new Task() { Name = name, StartTime = DateTime.Now, EndTime = endTime, Worker = worker, Project = project };
+            Task task = new Task() { Name = name, StartTime = DateTime.Now, 
+                EndTime = endTime, Worker = worker, WorkerId = worker.Id,  Project = project, PtojectId = project.Id};
 
             var result = _taskValidator.Validate(task);
             if (!result.IsValid)
@@ -216,6 +217,13 @@ namespace TaskManager_Practice.EntityFramework
             return temp;
         }
 
+        public Task SelectTaskById(string _Id)
+        {
+            int Id = Int32.Parse(_Id);
+            Task temp = Tasks.FirstOrDefault(t => t.Id == Id);
+            return temp;
+        }
+        
 
         // работает
 

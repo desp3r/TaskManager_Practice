@@ -55,9 +55,6 @@ namespace TaskManager_Practice.Views.Windows
             if (check == Result.Ok)
             {
                 this.Close();
-                
-                
-                
             }else if (check == Result.Error)
             {
                 MessageBox.Show("Invalid Input!");

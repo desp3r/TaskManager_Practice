@@ -59,9 +59,6 @@ namespace TaskManager_Practice.Views.Pages
                 db.RemoveProject(SelectedProject);
             }
 
-            db.SaveChanges();
-
-
             ProjectsGrid.ItemsSource = (from project in db.Projects
                 select project).ToList();
         }
@@ -74,14 +71,37 @@ namespace TaskManager_Practice.Views.Pages
 
             db.RemoveProjects();
 
-            db.SaveChanges();
-
-
             ProjectsGrid.ItemsSource = (from project in db.Projects
                 select project).ToList();
         }
 
+        private void FindByName(object sender, RoutedEventArgs e)
+        {
+            if (FindByNameProject.Text.Length > 0)
+            {
+                using var db = new MyDbContext();
+                Project result =db.SelectProjectByName(FindByNameProject.Text);
+                if (result != null)
+                {
+                    MessageBox.Show("Id: " + result.Id + " Name: " + result.Name + " Deadline^ " + result.Deadline.ToString());
+                }
+                else
+                {
+                    MessageBox.Show("No matches!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Enter name to find");
+            }
+        }
 
-        
+        private void ProjectShowTasks(object sender, RoutedEventArgs e)
+        {
+            if (SelectedProject != null)
+            {
+                new ProjectTasks(SelectedProject).ShowDialog();
+            }
+        }
     }
 }

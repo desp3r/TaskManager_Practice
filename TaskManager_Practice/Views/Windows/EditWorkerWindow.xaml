@@ -4,9 +4,66 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:TaskManager_Practice.Views.Windows"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="EditWorkerWindow" Height="450" Width="800">
     <Grid>
+        
+        <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                
+                <StackPanel Grid.Row="0" 
+                            Orientation="Vertical"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center">
+                    
+                    <TextBox x:Name="EditWorkerName"
+                             Margin="5,10,0,0"
+                             Style="{StaticResource MaterialDesignTextBoxBase}"
+                             BorderBrush="DarkCyan"
+                             MinWidth="100"
+                             materialDesign:HintAssist.Hint="WORKER NAME"
+                             materialDesign:HintAssist.IsFloating="True"/>
+                    
+                    <TextBox x:Name="EditWorkerSurname"
+                             Margin="5,10,0,0"
+                             Style="{StaticResource MaterialDesignTextBoxBase}"
+                             BorderBrush="DarkCyan"
+                             MinWidth="100"
+                             materialDesign:HintAssist.Hint="WORKER SURNAME"
+                             materialDesign:HintAssist.IsFloating="True"/>
+                    
+                    <TextBox x:Name="EditWorkerPosition"
+                             Margin="5,10,0,0"
+                             Style="{StaticResource MaterialDesignTextBoxBase}"
+                             BorderBrush="DarkCyan"
+                             MinWidth="100"
+                             materialDesign:HintAssist.Hint="POSITION"
+                             materialDesign:HintAssist.IsFloating="True"/>
+                    
+                    <TextBox x:Name="EditWorkerNumber"
+                             Margin="5,10,0,0"
+                             Style="{StaticResource MaterialDesignTextBoxBase}"
+                             BorderBrush="DarkCyan"
+                             MinWidth="100"
+                             materialDesign:HintAssist.Hint="380509872234"
+                             materialDesign:HintAssist.IsFloating="True"/>
+        
+                </StackPanel>
+                
+                <Rectangle Grid.Row="1" Fill="DarkCyan"/>
+                
+                <RadioButton Grid.Row="1" 
+                             Content="Add" 
+                             VerticalAlignment="Bottom"
+                             HorizontalAlignment="Center"
+                             Style="{StaticResource MaterialDesignOutlinedButton}" 
+                             BorderBrush="Beige" 
+                             Foreground="Beige" 
+                             Click="EditWorkerClick"
+                             Margin="5,10,0,10"/>
         
     </Grid>
 </Window>

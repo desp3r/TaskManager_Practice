@@ -8,34 +8,53 @@
       Title="Page3">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         
         
-        <DataGrid Margin="0 10"
+        <Rectangle Grid.Row="0" Fill="DarkCyan"/>
+        
+        <StackPanel Grid.Row="0"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Left">
+            
+            <TextBox x:Name="FindTaskById"
+                     Margin="5,10,0,10"
+                     Style="{StaticResource MaterialDesignTextBoxBase}"
+                     BorderBrush="Beige"
+                     MinWidth="200"
+                     Foreground="Beige"
+                     SelectionBrush="Beige"
+                     FontSize="14"/>
+            
+            <RadioButton Content="Find" 
+                         Style="{StaticResource MaterialDesignOutlinedButton}" 
+                         BorderBrush="Beige" Foreground="Beige" 
+                         Click="FindById"
+                         Margin="5,10,0,10"/>
+            
+        </StackPanel>
+        
+        
+        <DataGrid Grid.Row="1" Margin="0 10"
                   IsReadOnly="True"
                   x:Name="TasksGrid"
                   SelectionChanged="TasksGrid_OnSelectionChanged"
         />
          
-        <Rectangle Grid.Row="1" Fill="DarkCyan"/>
+        <Rectangle Grid.Row="2" Fill="DarkCyan"/>
         
         <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Center"
-                    Grid.Row="1" 
+                    Grid.Row="2" 
                     Margin="1">
                 
             <RadioButton Content="Add" 
                          Style="{StaticResource MaterialDesignOutlinedButton}" 
                          BorderBrush="Beige" Foreground="Beige" 
                          Click="AddTaskClick"
-                         Margin="5,10,0,10"/>
-                
-            <RadioButton Content="Edit" 
-                         Style="{StaticResource MaterialDesignOutlinedButton}" 
-                         BorderBrush="Beige" Foreground="Beige" 
-                         Click="EditTaskClick"
                          Margin="5,10,0,10"/>
                 
             <RadioButton Content="Remove" 

@@ -33,17 +33,6 @@ namespace TaskManager_Practice.ViewModels
 
         #endregion
 
-
-
-
-        #region Private Methods
-
-        
-
-        #endregion
-
-        
-        
         #region Commands
 
         public ActionCommand OpenProjectsCommand { get; }

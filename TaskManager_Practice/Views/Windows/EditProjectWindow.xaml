@@ -24,11 +24,15 @@
                      BorderBrush="DarkCyan"
                      MinWidth="100"/>
             
-            <TextBox x:Name="EditProjectTime"
-                     Margin="5,10,0,0"
-                     Style="{StaticResource MaterialDesignTextBoxBase}"
-                     BorderBrush="DarkCyan"
-                     MinWidth="100"/>
+            <DatePicker SelectedDateFormat="Long" 
+                        SelectedDate="6/13/21"
+                        DisplayDateStart="6/13/21" 
+                        DisplayDateEnd="6/20/29" 
+                        FirstDayOfWeek="Monday"
+                        BorderBrush="DarkCyan"
+                        Margin="5,10,0,0"
+                        x:Name="EditProjectTime"
+                        Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
         </StackPanel>
         
         <Rectangle Grid.Row="1" Fill="DarkCyan"/>
