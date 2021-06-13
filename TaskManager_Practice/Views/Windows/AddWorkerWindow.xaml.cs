@@ -16,7 +16,7 @@ namespace TaskManager_Practice.Views.Windows
         private void AddWorkerClick(object sender, RoutedEventArgs e)
         {
             var db = new MyDbContext();
-            db.Add(new Worker(workerName.Text, workerSurname.Text));
+            // db.Add(new Worker(workerName.Text, workerSurname.Text));
             db.SaveChanges();
             this.Close();
         }

@@ -21,32 +21,38 @@
                   SelectionChanged="WorkersGrid_OnSelectionChanged"
         />
          
+        <Rectangle Grid.Row="1" Fill="DarkCyan"/>
         
-        <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="15">
-            <Button
-                Margin="10"
-                Content="Add project"
-                Click="AddWorkerClick"
-            />
-            
-            <Button
-                Margin="10"
-                Content="Remove All"
-                Click="RemoveAllClick"
-            />
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    Grid.Row="1" 
+                    Margin="1">
                 
-            <Button
-                Margin="10"
-                Content="Remove"
-                Click="RemoveProjectClick"
-            />
+            <RadioButton Content="Add" 
+                         Style="{StaticResource MaterialDesignOutlinedButton}" 
+                         BorderBrush="Beige" Foreground="Beige" 
+                         Click="AddWorkerClick"
+                         Margin="5,10,0,10"/>
                 
-            <Button
-                Margin="10"
-                Content="Edit"
-                Click="EditProjectClick"
-            />
+            <RadioButton Content="Edit" 
+                         Style="{StaticResource MaterialDesignOutlinedButton}" 
+                         BorderBrush="Beige" Foreground="Beige" 
+                         Click="EditWorkerClick"
+                         Margin="5,10,0,10"/>
+                
+            <RadioButton Content="Remove" 
+                         Style="{StaticResource MaterialDesignOutlinedButton}" 
+                         BorderBrush="Beige" Foreground="Beige" 
+                         Click="RemoveWorkerClick"
+                         Margin="5,10,0,10"/>
+                
+            <RadioButton Content="Remove All" 
+                         Style="{StaticResource MaterialDesignOutlinedButton}" 
+                         BorderBrush="Beige" Foreground="Beige" 
+                         Click="RemoveAllClick"
+                         Margin="5,10,0,10"/>
             
         </StackPanel>
+        
         </Grid>
 </Page>

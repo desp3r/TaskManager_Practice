@@ -10,31 +10,18 @@ namespace TaskManager_Practice.Models
 {
     public class Project
     {
-        [Key]
         public int Id { get; set; }
 
-        [Required]
         public string Name { get; set; }
         
-        [Required]
-        public string Status { get; set; }
+        public string Deadline { get; set; }
 
-        [Required]
-        public string StartTime { get; set; }
-        
-        [ForeignKey("Worker")]
-        public int? WorkerId { get; set; }
-        public Worker Worker { get; set; }
+        public List<Task> Tasks { get; set; }
 
-        public Project()
-        {
-        }
-
-        public Project(string name)
+        public Project(string name, string deadline)
         {
             this.Name = name;
-            this.StartTime = DateTime.Now.ToString();
-            this.Status = "In Process";
+            this.Deadline = DateTime.Parse(deadline).ToString();
         }
     }
 }

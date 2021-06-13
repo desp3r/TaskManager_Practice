@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
@@ -11,6 +12,51 @@ namespace TaskManager_Practice.EntityFramework
     public class MyDbContext : DbContext
     {
 
+        public void AddProject(string name, string deadline)
+        {
+            Project project = new Project(name, deadline);
+            Projects.Add(project);
+            SaveChanges();
+        }
+        
+        public void AddTask(string name, string endTime, Worker worker, Project project)
+        {
+            Task task = new Task(name, endTime, worker, project);
+            Tasks.Add(task);
+            SaveChanges();
+        }
+        
+        public void AddWorker(string name, string surname, string position, string phoneNumber)
+        {
+            Worker worker = new Worker(name, surname, position, phoneNumber);
+            Workers.Add(worker);
+            SaveChanges();
+        }
+        
+        public void EditProject(Project project, string name, string deadline)
+        {
+            var temp = Projects.FirstOrDefault(p => p.Id == project.Id);
+
+            if (temp == null)
+                return;
+
+            temp.Name = name;
+            temp.Deadline = DateTime.Parse(deadline).ToString();
+
+            Entry(temp).State = EntityState.Modified;
+
+            SaveChanges();
+        }
+        
+        
+        
+        
+        public void RemoveProject(Project project)
+        {
+            Projects.Remove(project);
+        }
+        
+        
         public void RemoveWorkers()
         {
             var list = Workers.ToList();
@@ -26,70 +72,56 @@ namespace TaskManager_Practice.EntityFramework
         }
 
 
-        public void AddProject(Project project)
-        {
-            Projects.Add(project);
-        }
-        public void RemoveProject(Project project)
-        {
-            Projects.Remove(project);
-        }
+
 
         // работает
-        public void EditProject(Project project)
-        {
-            var temp = Projects.FirstOrDefault(p => p.Id == project.Id);
-
-            if (temp == null)
-                return;
-
-            temp.Name = project.Name;
-
-            Entry(temp).State = EntityState.Modified;
-
-            SaveChanges();
-        }
+ 
 
 
-        public List<Worker> GetWorkers()
-        {
-            if (Workers.Count() == 0)
-                return new List<Worker>();
+        // public List<Worker> GetWorkers()
+        // {
+        //     if (Workers.Count() == 0)
+        //         return new List<Worker>();
+        //
+        //     return Workers.Include(a => a.Projects).ToList();
+        //
+        // }
 
-            return Workers.Include(a => a.Projects).ToList();
 
-        }
-
-
-        public List<string> GetWorkersName()
-        {
-            List<string> list = new List<string>();
-            var query = "SELECT Name FROM Workers";
-            using var connection = new SqliteConnection("Filename=myDb.db");
-            connection.Open();
-            using var command = new SqliteCommand(query,connection);
-            using var reader = command.ExecuteReader();
-            while (reader.Read())
-            {
-                list.Add(reader.GetString(0));
-            }
-
-            return list;
-
-        }
+        // public List<string> GetWorkersName()
+        // {
+        //     List<string> list = new List<string>();
+        //     var query = "SELECT Name FROM Workers";
+        //     using var connection = new SqliteConnection("Filename=myDb.db");
+        //     connection.Open();
+        //     using var command = new SqliteCommand(query,connection);
+        //     using var reader = command.ExecuteReader();
+        //     while (reader.Read())
+        //     {
+        //         list.Add(reader.GetString(0));
+        //     }
+        //
+        //     return list;
+        //
+        // }
         
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<Worker>()
-            .HasIndex(u => u.Name)
-            .IsUnique();
-        }
+        // protected override void OnModelCreating(ModelBuilder modelBuilder)
+        // {
+        //     base.OnModelCreating(modelBuilder);
+        //     modelBuilder.Entity<Worker>()
+        //     .HasIndex(u => u.Name)
+        //     .IsUnique();
+        // }
 
 
 
         public DbSet<Project> Projects { get; set; }
+        
+        public DbSet<Task> Tasks { get; set; }
+        
         public DbSet<Worker> Workers { get; set; }
+        
+        
 
 
         public MyDbContext()

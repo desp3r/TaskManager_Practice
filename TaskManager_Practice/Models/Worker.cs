@@ -11,28 +11,24 @@ namespace TaskManager_Practice.Models
 {
     public class Worker
     {
-        [Key]
         public int Id { get; set; }
-
-        [Required]
+        
         public string Name { get; set; }
-        [Required]
+        
         public string Surname { get; set; }
 
-        public ICollection<Project> Projects;
+        public string Position { get; set; }
+        
+        public string PhoneNumber { get; set; }
+        
+        public List<Task> Tasks { get; set; }
 
-        public ICollection<Task> Tasks;
-
-        public Worker()
+        public Worker(string name, string surname, string position, string phoneNumber)
         {
-            Projects = new List<Project>();
-        }
-        public Worker(string name, string surname):base()
-        {
-            Name = name;
-            Surname = surname;
+            this.Name = name;
+            this.Surname = surname;
+            this.Position = position;
+            this.PhoneNumber = phoneNumber;
         }
     }
-    
-    
 }

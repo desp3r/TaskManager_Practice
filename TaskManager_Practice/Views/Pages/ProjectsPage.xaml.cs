@@ -17,15 +17,37 @@ namespace TaskManager_Practice.Views.Pages
 
             DataContext = this;
 
-            MainGrid.ItemsSource = (from project in db.Projects
+            ProjectsGrid.ItemsSource = (from project in db.Projects
                 select project).ToList();
         }
 
         private Project SelectedProject { get; set; }
         
-        private void MainGrid_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ProjectsGrid_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            SelectedProject = MainGrid.SelectedItem as Project;
+            SelectedProject = ProjectsGrid.SelectedItem as Project;
+        }
+        
+        private void AddProjectClick(object sender, RoutedEventArgs e)
+        {
+            using var db = new MyDbContext();
+            new AddProjectWindow().ShowDialog();
+            
+            ProjectsGrid.ItemsSource = (from project in db.Projects
+                select project).ToList();
+        }
+        
+        private void EditProjectClick(object sender, RoutedEventArgs e)
+        {
+            using var db = new MyDbContext();
+            
+            if (SelectedProject != null)
+            {
+                new EditProjectWindow(SelectedProject).ShowDialog();
+            }
+            
+            ProjectsGrid.ItemsSource = (from project in db.Projects
+                select project).ToList();
         }
 
         private void RemoveProjectClick(object sender, RoutedEventArgs e)
@@ -40,18 +62,11 @@ namespace TaskManager_Practice.Views.Pages
             db.SaveChanges();
 
 
-            MainGrid.ItemsSource = (from project in db.Projects
+            ProjectsGrid.ItemsSource = (from project in db.Projects
                 select project).ToList();
         }
         
-        private void AddProjectClick(object sender, RoutedEventArgs e)
-        {
-            using var db = new MyDbContext();
-            new AddProjectWindow().ShowDialog();
-            
-            MainGrid.ItemsSource = (from project in db.Projects
-                select project).ToList();
-        }
+
 
         private void RemoveAllClick(object sender, RoutedEventArgs e)
         {
@@ -62,22 +77,11 @@ namespace TaskManager_Practice.Views.Pages
             db.SaveChanges();
 
 
-            MainGrid.ItemsSource = (from project in db.Projects
+            ProjectsGrid.ItemsSource = (from project in db.Projects
                 select project).ToList();
         }
 
 
-        private void EditProjectClick(object sender, RoutedEventArgs e)
-        {
-            using var db = new MyDbContext();
-            
-            if (SelectedProject != null)
-            {
-                new EditProjectWindow(SelectedProject).ShowDialog();
-            }
-            
-            MainGrid.ItemsSource = (from project in db.Projects
-                select project).ToList();
-        }
+        
     }
 }

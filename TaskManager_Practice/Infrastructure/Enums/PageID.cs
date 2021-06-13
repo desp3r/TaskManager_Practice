@@ -2,6 +2,6 @@
 {
     public enum PageID
     {
-        Projects, Workers
+        Projects, Workers, Tasks
     }
 }

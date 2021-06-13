@@ -53,5 +53,14 @@ namespace TaskManager_Practice.Views.Pages
         }
 
 
+        private void RemoveWorkerClick(object sender, RoutedEventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        private void EditWorkerClick(object sender, RoutedEventArgs e)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

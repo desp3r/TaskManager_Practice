@@ -6,22 +6,22 @@ namespace TaskManager_Practice.Views.Windows
 {
     public partial class EditProjectWindow : Window
     {
-        private Project _project { get; set; }
-        
+        private Project insideProject;
         public EditProjectWindow(Project project)
         {
-            _project = project;
+            insideProject = project;
             InitializeComponent();
-            EditProjectName.Text = _project.Name;
+
+            EditProjectName.Text = project.Name;
+            EditProjectTime.Text = project.Deadline;
             DataContext = this;
         }
 
         private void SaveChangesClick(object sender, RoutedEventArgs e)
         {
             var db = new MyDbContext();
-            _project.Name = EditProjectName.Text;
-            db.EditProject(_project);
-            Close();
+            db.EditProject(insideProject, EditProjectName.Text, EditProjectTime.Text);
+            this.Close();
         }
     }
 }

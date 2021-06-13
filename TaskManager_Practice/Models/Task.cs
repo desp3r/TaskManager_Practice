@@ -9,24 +9,31 @@ namespace TaskManager_Practice.Models
 {
     public class Task
     {
-        [Key] public int Id { get; set; }
+        public int Id { get; set; }
 
-        [Required] public string Name { get; set; }
+        public string Name { get; set; }
 
-        [Required] public DateTime Deadline { get; set; }
+        public string StartTime { get; set; }
 
-        [Required] public String Status { get; set; }
+        public string EndTime { get; set; }
+
+        public int WorkerId { get; set; }
         
         public Worker Worker { get; set; }
+        
+        public int PtojectId { get; set; }
+        
+        public Project Project { get; set; }
 
-        public Task()
-        {
-        }
-
-        public Task(string name, string time) // вопрос как инициализировать через enum Statuses
+        public Task(string name, string endTime, Worker worker, Project project)
         {
             this.Name = name;
-            this.Deadline = DateTime.Parse(time);
+            this.StartTime = DateTime.Now.ToString();
+            this.EndTime = DateTime.Parse(endTime).ToString();
+            this.Worker = worker;
+            this.Project = project;
         }
+        
+
     }
 }

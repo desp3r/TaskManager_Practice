@@ -33,6 +33,12 @@
                          Command="{Binding OpenProjectsCommand}"
                          Margin="5,5,5,5"/>
             
+            <RadioButton Content="Tasks" 
+                         Style="{StaticResource MaterialDesignOutlinedButton}" 
+                         BorderBrush="Beige" Foreground="Beige" 
+                         Command="{Binding OpenTasksCommand}"
+                         Margin="5,5,5,5"/>
+            
             <RadioButton Content="Workers" 
                          Style="{StaticResource MaterialDesignOutlinedButton}"
                          BorderBrush="Beige" 

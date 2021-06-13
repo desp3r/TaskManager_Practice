@@ -46,9 +46,9 @@ namespace TaskManager_Practice.ViewModels
         
         #region Commands
 
-        public ICommand OpenProjectsCommand { get; }
-        public ICommand OpenWorkersCommand { get; }
-        public ICommand OpenNewWindow { get; }
+        public ActionCommand OpenProjectsCommand { get; }
+        public ActionCommand OpenWorkersCommand { get; }
+        public ActionCommand OpenTasksCommand { get; }
         
         #endregion
 
@@ -57,8 +57,8 @@ namespace TaskManager_Practice.ViewModels
 
         public MainWindowViewModel()
         {
-            OpenNewWindow = new ActionCommand(OnOpenChildWindow, CanOpenChildWindow);
             OpenProjectsCommand = new ActionCommand(OpenProjectsCommand_Execute, OpenProjectsCommand_CanExecute);
+            OpenTasksCommand = new ActionCommand(OpenTasksCommand_Execute, OpenTasksCommand_CanExecute);
             OpenWorkersCommand = new ActionCommand(OpenWorkersCommand_Execute, OpenWorkersCommand_CanExecute);
         }
 
@@ -67,25 +67,16 @@ namespace TaskManager_Practice.ViewModels
         
         #region Commands handlers
 
-        // Тут какое-то условие можешь придумать, если не надо то сноси
         private bool OpenProjectsCommand_CanExecute(object arg) => true;
         private void OpenProjectsCommand_Execute(object obj)=>  AppNavigation.Open(PageID.Projects);
         
-        // Тут какое-то условие можешь придумать, если не надо то сноси
+        private bool OpenTasksCommand_CanExecute(object arg) => true;
+        private void OpenTasksCommand_Execute(object obj)=>  AppNavigation.Open(PageID.Tasks);
+        
         private bool OpenWorkersCommand_CanExecute(object arg) => true;
         private void OpenWorkersCommand_Execute(object obj)=>  AppNavigation.Open(PageID.Workers);
-
         
-        private bool CanOpenChildWindow(object ob) => true;
-
-        private void OnOpenChildWindow(object ob)
-        {
-            // AddProjectWindow addProjectWindow = new AddProjectWindow(null);
-            // addProjectWindow.Show();
-        }
 
         #endregion
-        
-
     }
 }

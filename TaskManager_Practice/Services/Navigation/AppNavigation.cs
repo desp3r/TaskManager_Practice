@@ -50,6 +50,7 @@ namespace TaskManager_Practice.Services.Navigation
         {
             PageID.Projects => new ProjectsPage(),
             PageID.Workers => new WorkersPage(),
+            PageID.Tasks => new TasksPage(),
             _ => throw new NotImplementedException()
         };
 

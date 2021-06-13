@@ -16,8 +16,8 @@
         
         <DataGrid Margin="0 10"
                 IsReadOnly="True"
-                x:Name="MainGrid"
-                SelectionChanged="MainGrid_OnSelectionChanged"
+                x:Name="ProjectsGrid"
+                SelectionChanged="ProjectsGrid_OnSelectionChanged"
             />
          
         <Rectangle Grid.Row="1" Fill="DarkCyan"/>
@@ -51,10 +51,8 @@
                              Click="RemoveAllClick"
                              Margin="5,10,0,10"/>
                 
-               
-            
             </StackPanel>
-     
-  
+        
     </Grid>
+    
 </Page>
