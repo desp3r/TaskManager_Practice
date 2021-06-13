@@ -1,26 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.IO;
 using System.Linq;
-using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using TaskManager_Practice.Infrastructure;
 using TaskManager_Practice.Models;
 using TaskManager_Practice.Models.Validators;
 using TaskManager_Practice.Services;
+using static TaskManager_Practice.Services.Common.Utils;
 
 namespace TaskManager_Practice.EntityFramework
 {
     public class MyDbContext : DbContext
     {
-        private ProjectValidator _projectValidator = new();
-        private TaskValidator _taskValidator = new();
-        private WorkerValidator _workerValidator = new();
+        private readonly ProjectValidator _projectValidator = new();
+        private readonly TaskValidator _taskValidator = new();
+        private readonly WorkerValidator _workerValidator = new();
 
 
         public Result AddProject(string name, DateTime deadline)
         {
+            NotNull(name, nameof(name));
+            NotNull(deadline, nameof(deadline));
+            
             Project project = new(name, deadline);
 
 
@@ -39,6 +39,11 @@ namespace TaskManager_Practice.EntityFramework
 
         public Result AddTask(string name, DateTime endTime, Worker worker, Project project)
         {
+            NotNull(name, nameof(name));
+            NotNull(endTime, nameof(endTime));
+            NotNull(worker, nameof(worker));
+            NotNull(project, nameof(project));
+            
             Task task = new(name, endTime, worker, project);
 
             var result = _taskValidator.Validate(task);
@@ -54,6 +59,11 @@ namespace TaskManager_Practice.EntityFramework
 
         public Result AddWorker(string name, string surname, string position, string phoneNumber)
         {
+            NotNull(name, nameof(name));
+            NotNull(surname, nameof(surname));
+            NotNull(position, nameof(position));
+            NotNull(phoneNumber, nameof(phoneNumber));
+            
             Worker worker = new Worker(name, surname, position, phoneNumber);
             var result = _workerValidator.Validate(worker);
             if (!result.IsValid)
