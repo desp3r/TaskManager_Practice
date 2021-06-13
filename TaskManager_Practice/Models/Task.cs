@@ -13,9 +13,9 @@ namespace TaskManager_Practice.Models
 
         public string Name { get; set; }
 
-        public string StartTime { get; set; }
+        public DateTime StartTime { get; set; }
 
-        public string EndTime { get; set; }
+        public DateTime EndTime { get; set; }
 
         public int WorkerId { get; set; }
         
@@ -25,13 +25,13 @@ namespace TaskManager_Practice.Models
         
         public Project Project { get; set; }
 
-        public Task(string name, string endTime, Worker worker, Project project)
+        public Task(string name, DateTime endTime, Worker worker, Project project)
         {
-            this.Name = name;
-            this.StartTime = DateTime.Now.ToString();
-            this.EndTime = DateTime.Parse(endTime).ToString();
-            this.Worker = worker;
-            this.Project = project;
+            Name = name;
+            StartTime = DateTime.Now;
+            EndTime = endTime;
+            Worker = worker;
+            Project = project;
         }
         
 

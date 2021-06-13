@@ -14,14 +14,14 @@ namespace TaskManager_Practice.Models
 
         public string Name { get; set; }
         
-        public string Deadline { get; set; }
+        public DateTime Deadline { get; set; }
 
         public List<Task> Tasks { get; set; }
 
-        public Project(string name, string deadline)
+        public Project(string name, DateTime deadline)
         {
-            this.Name = name;
-            this.Deadline = DateTime.Parse(deadline).ToString();
+            Name = name;
+            Deadline = deadline;
         }
     }
 }

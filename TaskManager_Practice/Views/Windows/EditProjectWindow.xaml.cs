@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using TaskManager_Practice.EntityFramework;
 using TaskManager_Practice.Models;
 
@@ -13,15 +14,15 @@ namespace TaskManager_Practice.Views.Windows
             InitializeComponent();
 
             EditProjectName.Text = project.Name;
-            EditProjectTime.Text = project.Deadline;
+            EditProjectTime.Text = project.Deadline.ToShortDateString();
             DataContext = this;
         }
 
         private void SaveChangesClick(object sender, RoutedEventArgs e)
         {
             var db = new MyDbContext();
-            db.EditProject(insideProject, EditProjectName.Text, EditProjectTime.Text);
-            this.Close();
+            db.EditProject(insideProject, EditProjectName.Text, DateTime.Parse(EditProjectTime.Text));
+            Close();
         }
     }
 }
