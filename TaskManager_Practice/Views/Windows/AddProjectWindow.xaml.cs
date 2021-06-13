@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Microsoft.EntityFrameworkCore;
 using TaskManager_Practice.EntityFramework;
+using TaskManager_Practice.Infrastructure;
 using TaskManager_Practice.Models;
 
 namespace TaskManager_Practice.Views.Windows
@@ -31,9 +32,15 @@ namespace TaskManager_Practice.Views.Windows
         private void AddProjectClick(object sender, RoutedEventArgs e)
         {
             var db = new MyDbContext();
-            // db.AddProject(new Project(AddProjectName.Text));
-            db.SaveChanges();
-            this.Close();
+            var result = db.AddProject(AddProjectName.Text, DatePickerProject.SelectedDate.Value.Date);
+            if (result == Result.Ok)
+            {
+                this.Close();
+            }
+            else if(result == Result.Error)
+            {
+                MessageBox.Show("Invalid Input!!");
+            }
         }
     }
 }

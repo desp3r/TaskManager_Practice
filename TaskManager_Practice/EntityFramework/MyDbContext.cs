@@ -21,9 +21,8 @@ namespace TaskManager_Practice.EntityFramework
         {
             NotNull(name, nameof(name));
             NotNull(deadline, nameof(deadline));
-            
-            Project project = new(name, deadline);
 
+            Project project = new Project() {Name = name, Deadline = deadline};
 
             var result = _projectValidator.Validate(project);
 
@@ -35,7 +34,6 @@ namespace TaskManager_Practice.EntityFramework
             Projects.Add(project);
             SaveChanges();
             return Result.Ok;
-
         }
 
         public Result AddTask(string name, DateTime endTime, Worker worker, Project project)
@@ -66,8 +64,9 @@ namespace TaskManager_Practice.EntityFramework
             NotNull(surname, nameof(surname));
             NotNull(position, nameof(position));
             NotNull(phoneNumber, nameof(phoneNumber));
-            
-            Worker worker = new Worker(name, surname, position, phoneNumber);
+
+            Worker worker = new Worker()
+                {Name = name, Surname = surname, Position = position, PhoneNumber = phoneNumber};
             var result = _workerValidator.Validate(worker);
             if (!result.IsValid)
             {
@@ -165,8 +164,6 @@ namespace TaskManager_Practice.EntityFramework
             SaveChanges();
             return Result.Ok;
         }
-        
-
 
         public void RemoveProject(Project project)
         {
@@ -207,7 +204,17 @@ namespace TaskManager_Practice.EntityFramework
                 Workers.Remove(list[i]);
         }
 
+        public Project SelectProjectByName(string name)
+        {
+            Project temp = Projects.FirstOrDefault(p => p.Name == name);
+            return temp;
+        }
 
+        public Worker SelectWorkerBySurname(String surnname)
+        {
+            Worker temp = Workers.FirstOrDefault(w => w.Surname == surnname);
+            return temp;
+        }
 
 
         // работает

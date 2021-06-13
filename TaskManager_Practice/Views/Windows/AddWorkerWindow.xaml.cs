@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using TaskManager_Practice.EntityFramework;
+using TaskManager_Practice.Infrastructure;
 using TaskManager_Practice.Models;
 
 namespace TaskManager_Practice.Views.Windows
@@ -15,10 +16,20 @@ namespace TaskManager_Practice.Views.Windows
 
         private void AddWorkerClick(object sender, RoutedEventArgs e)
         {
-            var db = new MyDbContext();
-            // db.Add(new Worker(workerName.Text, workerSurname.Text));
-            db.SaveChanges();
-            this.Close();
+            using var db = new MyDbContext();
+
+            var check = db.AddWorker(AddWorkerName.Text, AddWorkerSurname.Text,
+                AddWorkerPosition.Text, AddWorkerNumber.Text);
+
+            if (check == Result.Ok)
+            {
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Invalid Input!");
+            }
+            
         }
     }
 }

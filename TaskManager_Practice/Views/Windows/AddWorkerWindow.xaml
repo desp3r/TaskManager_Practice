@@ -4,20 +4,66 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:TaskManager_Practice.Views.Windows"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="AddWorkerWindow" Height="450" Width="800">
     <Grid>
+        
         <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-        </Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                
+                <StackPanel Grid.Row="0" 
+                            Orientation="Vertical"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center">
+                    
+                    <TextBox x:Name="AddWorkerName"
+                             Margin="5,10,0,0"
+                             Style="{StaticResource MaterialDesignTextBoxBase}"
+                             BorderBrush="DarkCyan"
+                             MinWidth="100"
+                             materialDesign:HintAssist.Hint="WORKER NAME"
+                             materialDesign:HintAssist.IsFloating="True"/>
+                    
+                    <TextBox x:Name="AddWorkerSurname"
+                             Margin="5,10,0,0"
+                             Style="{StaticResource MaterialDesignTextBoxBase}"
+                             BorderBrush="DarkCyan"
+                             MinWidth="100"
+                             materialDesign:HintAssist.Hint="WORKER SURNAME"
+                             materialDesign:HintAssist.IsFloating="True"/>
+                    
+                    <TextBox x:Name="AddWorkerPosition"
+                             Margin="5,10,0,0"
+                             Style="{StaticResource MaterialDesignTextBoxBase}"
+                             BorderBrush="DarkCyan"
+                             MinWidth="100"
+                             materialDesign:HintAssist.Hint="POSITION"
+                             materialDesign:HintAssist.IsFloating="True"/>
+                    
+                    <TextBox x:Name="AddWorkerNumber"
+                             Margin="5,10,0,0"
+                             Style="{StaticResource MaterialDesignTextBoxBase}"
+                             BorderBrush="DarkCyan"
+                             MinWidth="100"
+                             materialDesign:HintAssist.Hint="380509872234"
+                             materialDesign:HintAssist.IsFloating="True"/>
         
-        <StackPanel Orientation="Vertical">
-            <TextBox x:Name="workerName"></TextBox>
-            <TextBox x:Name="workerSurname"></TextBox>
-            <Button Content="Add" Click="AddWorkerClick"></Button>
-        </StackPanel>
-        
+                </StackPanel>
+                
+                <Rectangle Grid.Row="1" Fill="DarkCyan"/>
+                
+                <RadioButton Grid.Row="1" 
+                             Content="Add" 
+                             VerticalAlignment="Bottom"
+                             HorizontalAlignment="Center"
+                             Style="{StaticResource MaterialDesignOutlinedButton}" 
+                             BorderBrush="Beige" 
+                             Foreground="Beige" 
+                             Click="AddWorkerClick"
+                             Margin="5,10,0,10"/>
         
     </Grid>
 </Window>

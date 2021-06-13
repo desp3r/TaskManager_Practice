@@ -2,6 +2,8 @@
 using System.Windows;
 using System.Windows.Controls;
 using TaskManager_Practice.EntityFramework;
+using TaskManager_Practice.Models;
+using TaskManager_Practice.Views.Windows;
 
 namespace TaskManager_Practice.Views.Pages
 {
@@ -18,14 +20,19 @@ namespace TaskManager_Practice.Views.Pages
             TasksGrid.ItemsSource = (from task in db.Tasks select task).ToList();
         }
 
+        private Task SelectedTask { get; set; }
         private void TasksGrid_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            throw new System.NotImplementedException();
+            SelectedTask = TasksGrid.SelectedItem as Task;
         }
 
         private void AddTaskClick(object sender, RoutedEventArgs e)
         {
-            throw new System.NotImplementedException();
+            new AddTaskWindow().ShowDialog();
+
+            using var db = new MyDbContext();
+            
+            TasksGrid.ItemsSource = (from task in db.Tasks select task).ToList();
         }
 
 
