@@ -28,7 +28,7 @@ namespace TaskManager_Practice.EntityFramework
 
             if (!result.IsValid)
             {
-                Logger.WriteWarning(result.Errors.ForEach(a=>a.ErrorMessage));
+                Logger.WriteWarning(string.Join(',', result.Errors));
                 return Result.Error;
             }
             Projects.Add(project);
