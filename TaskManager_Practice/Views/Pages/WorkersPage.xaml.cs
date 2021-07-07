@@ -37,7 +37,6 @@ namespace TaskManager_Practice.Views.Pages
                 select worker).ToList();
         }
         
-        
         private void EditWorkerClick(object sender, RoutedEventArgs e)
         {
             if (SelectedWorker != null)

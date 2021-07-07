@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
 using Microsoft.EntityFrameworkCore;
 using TaskManager_Practice.Infrastructure;
 using TaskManager_Practice.Models;
@@ -105,37 +103,6 @@ namespace TaskManager_Practice.EntityFramework
             return Result.Ok;
         }
         
-        public Result EditTask(Task task, string name, DateTime endTime, Worker worker, Project project)
-        {
-            NotNull(task, nameof(task));
-            NotNull(name, nameof(name));
-            NotNull(endTime, nameof(endTime));
-            NotNull(worker, nameof(worker));
-            NotNull(project, nameof(project));
-
-            
-            var temp = Tasks.FirstOrDefault(t => t.Id == task.Id);
-
-            if (temp == null)
-                return Result.Error;
-
-            temp.Name = name;
-            temp.EndTime = endTime;
-            temp.Worker = worker;
-            temp.Project = project;
-            
-            var result = _taskValidator.Validate(temp);
-
-            if (!result.IsValid)
-            {
-                Logger.WriteWarning(string.Join(',', result.Errors));
-                return Result.Error;
-            }
-            Entry(temp).State = EntityState.Modified;
-            SaveChanges();
-            return Result.Ok;
-        }
-        
         public Result EditWorker(Worker worker, string name, string surname, string position, string phoneNumber)
         {
             NotNull(worker, nameof(worker));
@@ -223,46 +190,6 @@ namespace TaskManager_Practice.EntityFramework
             Task temp = Tasks.FirstOrDefault(t => t.Id == Id);
             return temp;
         }
-        
-
-        // работает
-
-
-        // public List<Worker> GetWorkers()
-        // {
-        //     if (Workers.Count() == 0)
-        //         return new List<Worker>();
-        //
-        //     return Workers.Include(a => a.Projects).ToList();
-        //
-        // }
-
-
-        // public List<string> GetWorkersName()
-        // {
-        //     List<string> list = new List<string>();
-        //     var query = "SELECT Name FROM Workers";
-        //     using var connection = new SqliteConnection("Filename=myDb.db");
-        //     connection.Open();
-        //     using var command = new SqliteCommand(query,connection);
-        //     using var reader = command.ExecuteReader();
-        //     while (reader.Read())
-        //     {
-        //         list.Add(reader.GetString(0));
-        //     }
-        //
-        //     return list;
-        //
-        // }
-
-        // protected override void OnModelCreating(ModelBuilder modelBuilder)
-        // {
-        //     base.OnModelCreating(modelBuilder);
-        //     modelBuilder.Entity<Worker>()
-        //     .HasIndex(u => u.Name)
-        //     .IsUnique();
-        // }
-
 
         public DbSet<Project> Projects { get; set; }
 

@@ -1,0 +1,15 @@
+﻿<Window x:Class="TaskManager_Practice.Views.Windows.WorkerTasks"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:TaskManager_Practice.Views.Windows"
+        mc:Ignorable="d"
+        Title="WorkerTasks" Height="400" Width="650">
+    <Grid>
+        <DataGrid Margin="0 10"
+                  IsReadOnly="True"
+                  x:Name="WorkerTasksGrid"
+        />
+    </Grid>
+</Window>

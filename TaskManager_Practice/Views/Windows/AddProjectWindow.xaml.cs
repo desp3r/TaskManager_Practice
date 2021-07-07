@@ -18,9 +18,7 @@ using TaskManager_Practice.Models;
 
 namespace TaskManager_Practice.Views.Windows
 {
-    /// <summary>
-    /// Логика взаимодействия для AddProjectWindow.xaml
-    /// </summary>
+    
     public partial class AddProjectWindow : Window
     {
         public AddProjectWindow()

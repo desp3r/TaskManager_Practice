@@ -22,13 +22,6 @@ namespace TaskManager_Practice.Models
         public string PhoneNumber { get; set; }
         
         public List<Task> Tasks { get; set; }
-
-        // public Worker(string name, string surname, string position, string phoneNumber)
-        // {
-        //     this.Name = name;
-        //     this.Surname = surname;
-        //     this.Position = position;
-        //     this.PhoneNumber = phoneNumber;
-        // }
+        
     }
 }

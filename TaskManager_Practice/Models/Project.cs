@@ -17,11 +17,5 @@ namespace TaskManager_Practice.Models
         public DateTime Deadline { get; set; }
 
         public List<Task> Tasks { get; set; }
-
-        // public Project(string name, DateTime deadline)
-        // {
-        //     Name = name;
-        //     Deadline = deadline;
-        // }
     }
 }
